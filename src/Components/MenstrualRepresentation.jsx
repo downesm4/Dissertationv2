@@ -12,11 +12,11 @@ const Menstruation = () => {
     const arc_offset = (360 - arc_span) / 2
 
     const segments = [
-        { start: 0, end: arc_span, color: '#ffe8eb' }, //background circle
+        { start: 0, end: arc_span, color: '#ffe4e6' }, //background circle
         { start: 0, end: 60, color: '#fecdd3' }, // predicted bleeding 
         { start: 0, end: 25, color: '#fb7185' }, //Logged Bleeding
-        { start: 100, end: 150, color: '#bae6fd' }, //fertile
-        { start: 120, end: 125, color: '#38bdf8' }, // ovulation 
+        { start: 100, end: 150, color: '#bfdbfe' }, //fertile
+        { start: 120, end: 125, color: '#60a5fa' }, // ovulation 
     ]
 
     const messages = [
@@ -101,48 +101,70 @@ const Menstruation = () => {
     const handlePos = polarToCartesian(angle);
 
     return (
-        <div className="relative w-200px h-200px p-5">
-            <svg ref={svgRef}
-                width={size}
-                height={size}
-                className="touch-none mx-auto"
-                onMouseMove={handleMouseMove}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-                onTouchDown={handleTouchDown}
-                onTouchUp={handleTouchUp}
-                onTouchMove={handleTouchMove}
-            >
-                {/* Arc Segments */}
-                {segments.map((seg, i) => (
-                    <path
-                        key={i}
-                        d={arc_path(seg.start, seg.end)}
-                        stroke={seg.color}
-                        strokeWidth={stroke}
+        <div>
+            <div className="relative w-200px h-200px p-5">
+                <svg ref={svgRef}
+                    width={size}
+                    height={size}
+                    className="touch-none mx-auto"
+                    onMouseMove={handleMouseMove}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                    onTouchDown={handleTouchDown}
+                    onTouchUp={handleTouchUp}
+                    onTouchMove={handleTouchMove}
+                >
+                    {/* Arc Segments */}
+                    {segments.map((seg, i) => (
+                        <path
+                            key={i}
+                            d={arc_path(seg.start, seg.end)}
+                            stroke={seg.color}
+                            strokeWidth={stroke}
+                            fill="none"
+                            strokeLinecap="round"
+                            transform="rotate(-23 140 140)"
+                        />
+                    ))}
+                    {/*  Handle */}
+                    <circle
+                        cx={handlePos.x}
+                        cy={handlePos.y}
+                        r={14}
                         fill="none"
-                        strokeLinecap="round"
+                        stroke="#5b342c"
+                        strokeWidth={4}
                         transform="rotate(-23 140 140)"
                     />
-                ))}
-                {/*  Handle */}
-                <circle
-                    cx={handlePos.x}
-                    cy={handlePos.y}
-                    r={14}
-                    fill="none"
-                    stroke="#5b342c"
-                    strokeWidth={4}
-                    transform="rotate(-23 140 140)"
-                />
-            </svg>
+                </svg>
 
-            {/* Center Text */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none mx-2">
-                <p className="text-3xl font-bold text-red-950">Day {day}</p>
-                <p className="text-red-950 font-regular text-center mt-1">{getMessage()}</p>
+                {/* Center Text */}
+                <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none mx-2">
+                    <p className="text-3xl font-bold text-black">Day {day}</p>
+                    <p className="text-black font-regular text-center mt-1">{getMessage()}</p>
+                </div>
+
+
             </div>
+
+            <div className="rounded-lg border-[0.25vw] border-zinc-700 bg-rose-100 my-3 grid grid-cols-4 gap-2 ">
+                {/* Key for Circle Graphic*/}
+
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-400 col-span-1 border-[0.2vw] border-black '> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-200 col-span-1 border-[0.2vw] border-black'> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-blue-200 col-span-1 border-[0.2vw] border-black'> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-blue-400 col-span-1 border-[0.2vw] border-black'> </div>
+
+
+                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Logged Bleeding </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Predicted Bleeding </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Predicted Fertile Days </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Predicted Ovulation </h3>
+            </div>
+
         </div>
+
+
     );
 }
 export default Menstruation;

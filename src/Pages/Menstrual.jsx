@@ -6,6 +6,11 @@ import Menstruation from '../Components/MenstrualRepresentation.jsx'
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
 
+import Blood from '../assets/v2/Bleeding/blood2.svg'
+import Pain from '../assets/v2/Pain/pain2.svg'
+import Symptoms from '../assets/v2/symptoms.svg'
+import Mood from '../assets/v2/Mood.png'
+
 function Menstrual() {
     const navigate = useNavigate();
 
@@ -14,41 +19,33 @@ function Menstrual() {
 
             <Menstruation />
 
-
-            <div className="rounded-lg border-[0.25vw] border-pink-500 bg-rose-100 my-3 grid grid-cols-4 gap-2 ">
-                {/* Key for Circle Graphic*/}
-
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-400 col-span-1 '> </div>
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-200 col-span-1 '> </div>
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-sky-200 col-span-1 '> </div>
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-sky-400 col-span-1 '> </div>
-
-
-                <h3 className='col-span-1 text-center text-sm font-bold text-red-950'> Logged Bleeding </h3>
-                <h3 className='col-span-1 text-center text-sm font-bold text-red-950'> Predicted Bleeding </h3>
-                <h3 className='col-span-1 text-center text-sm font-bold text-red-950'> Predicted Fertile Days </h3>
-                <h3 className='col-span-1 text-center text-sm font-bold text-red-950'> Predicted Ovulation </h3>
-            </div>
-
-            <div className="grid grid-cols-2 mt-8 mb-10 gap-x-5 gap-y-5">
-                <Button className="col-span-2  flex items-center justify-center text-center text-red-950 font-bold text-2xl"
+            <div className="flex flex-col mt-8 mb-10 gap-x-5 gap-y-5">
+                <Button className="flex items-center justify-center bg-rose-200 text-center text-black font-bold text-2xl"
                     onClick={() => navigate('/flow')}>
-                    Menstrual Flow
+                    <img src={Blood} className='float-left w-[15%] h-auto ' />
+                    <p className="flex-1"> Bleeding </p>
                 </Button>
+
                 <Button
-                    className="col-span-2  flex items-center justify-center text-center text-red-950 font-bold text-2xl"
+                    className="flex items-center justify-center text-center bg-cyan-200 text-black font-bold text-2xl"
                     onClick={() => navigate('/pain')}>
-                    Menstrual Pain
+                    <img src={Pain} className='float-left w-[15%] h-auto ' />
+                    <p className="flex-1"> Pain </p>
                 </Button>
+
                 <Button
-                    className="col-span-1 flex items-center justify-center text-center text-red-950 font-bold text-2xl"
+                    className="flex items-center justify-center bg-violet-200 text-center text-black font-bold text-2xl"
                     onClick={() => navigate('/symptoms')}>
-                    Symptoms
+                    <img src={Symptoms} className='float-left w-[15%] h-auto ' />
+                    <p className="flex-1"> Problems </p>
                 </Button>
+
                 <Button
-                    className="col-span-1 flex items-center justify-center text-center text-red-950 font-bold text-2xl"
-                    onClick={() => navigate('/mood')}
-                > Mood and Feelings </Button>
+                    className="flex items-center justify-center bg-amber-200 text-center text-black font-bold text-2xl"
+                    onClick={() => navigate('/mood')}>
+                    <img src={Mood} className='float-left w-[15%] h-auto ' />
+                    <p className="flex-1"> Moods </p>
+                </Button>
 
             </div>
 
