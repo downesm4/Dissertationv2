@@ -20,7 +20,7 @@ const DropDown = ({ className, onClick }) => {
                     <div
                         onClick={() => { setOpen(!open) }}
                         className={twMerge(
-                            'rounded-full flex items-center justify-between border-[0.75vw] border-pink-500 bg-rose-100 shadow-md/50 p-3 font-sans text-red-950 w-full', className)}>
+                            'rounded-full flex items-center justify-between border-[0.75vw] border-pink-500 bg-rose-100 shadow-md/50 p-3 text-red-950 w-full', className)}>
                         <h1 className="text-xl"> {selected} </h1>
                         <img src={drop} className="w-[10%] h-auto" />
 

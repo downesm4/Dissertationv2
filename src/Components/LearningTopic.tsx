@@ -25,7 +25,7 @@ const Topic = ({ title, children, className }) => {
 
     return (
         <div className={twMerge("", className)}>
-            <h1 className="text-3xl font-bold font-serif text-red-950 text-left"> {title} </h1>
+            <h1 className="text-3xl font-bold  text-red-950 text-left"> {title} </h1>
 
             <div className="relative">
                 <div ref={scrollRef} className="flex overflow-x-auto scroll-smooth">

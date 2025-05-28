@@ -140,7 +140,7 @@ const Menstruation = () => {
             {/* Center Text */}
             <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none mx-2">
                 <p className="text-3xl font-bold text-red-950">Day {day}</p>
-                <p className="text-red-950 text-center mt-1">{getMessage()}</p>
+                <p className="text-red-950 font-regular text-center mt-1">{getMessage()}</p>
             </div>
         </div>
     );

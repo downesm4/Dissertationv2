@@ -8,7 +8,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
 
     <HashRouter>
-      <App />
+      <body className="font-baloo font-extrabold">
+        <App />
+      </body>
     </HashRouter>
   </StrictMode>,
 )

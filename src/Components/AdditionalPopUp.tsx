@@ -19,7 +19,7 @@ const Additional = ({ onAddSymptom, onClose }) => {
 
 
         <div className='rounded-lg border-[0.5vw] border-pink-500 bg-rose-100 shadow-md/60 flex-col items-center justify-center m-10 py-5 text-red-950 '>
-            <h1 className="font-serif text-center text-xl "> What would you like to add?</h1>
+            <h1 className="text-center text-xl "> What would you like to add?</h1>
 
             <div className="flex p-3">
                 <h1 className="text-xl"> Name: </h1>

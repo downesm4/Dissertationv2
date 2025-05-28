@@ -83,7 +83,7 @@ const Calendar = () => {
                 <button onClick={PrevMonth} className="text-red-950 p-2 rounded-full">
                     <ChevronLeft size={24} />
                 </button>
-                <h2 className="text-red-950 text-3xl font-serif font-bold">{months[currentMonth]}</h2>
+                <h2 className="text-red-950 text-3xl font-bold">{months[currentMonth]}</h2>
                 <button onClick={NextMonth} className="text-red-950 p-2 rounded-full">
                     <ChevronRight size={24} />
                 </button>
@@ -91,7 +91,7 @@ const Calendar = () => {
 
             <div className="grid grid-cols-7 gap-2">
                 {daysOfWeek.map((day) => (
-                    <div key={day} className="h-8 flex items-center justify-center font-sans text-red-950 font-bold">
+                    <div key={day} className="h-8 flex items-center justify-center text-red-950 font-bold">
                         {day}
                     </div>
                 ))}

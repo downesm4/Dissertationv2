@@ -6,7 +6,7 @@ const TextInput = ({ rowNo, colNo, className }) => {
     return (
 
         <textarea
-            className={twMerge("rounded-lg p-3 w-[100%] bg-transparent border-[0.5vw] border-pink-500 text-base", className)} rows={rowNo} cols={colNo} placeholder="Additional Notes">
+            className={twMerge("rounded-lg p-3 w-[100%] font-regular bg-white border-[0.5vw] border-black text-base", className)} rows={rowNo} cols={colNo} placeholder="Want to write something?">
         </textarea>
 
     );
