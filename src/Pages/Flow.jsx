@@ -21,7 +21,7 @@ function Flow() {
 
     return (
         <>
-            <Layout allowBack={true} allowNav={false} title={"How was the Bleeding?"}>
+            <Layout allowBack={true} allowNav={false}>
 
                 <div className="flex-col space-y-10">
 
@@ -33,8 +33,8 @@ function Flow() {
                             onClick={() => { setSelected(selected === "none" ? "" : "none") }}>
                             <div className="flex w-[30%]">
 
-                                <img src={None} className="float-left w-[40%] h-auto  mb-auto p-1" />
-                                <img src={Face1} className="float-right w-[40%] h-auto  mb-auto p-1" />
+                                <img src={None} className="float-left w-[50%] h-auto  mb-auto p-1" />
+                                <img src={Face1} className="float-right w-[50%] h-auto  mb-auto p-1" />
 
                             </div>
                             <h1 className="flex-1 text-xl text-black text-center font-bold "> None </h1>
@@ -43,8 +43,8 @@ function Flow() {
                         <Button className={twMerge("flex w-full items-center bg-rose-200 p-2  border border-black shadow-xl", selected === "light" ? 'outline-black outline-[0.5vw] md:outline-[0.25vw]' : '')}
                             onClick={() => { setSelected(selected === "light" ? "" : "light") }}>
                             <div className="flex w-[30%]">
-                                <img src={Blood1} className="float-left w-[40%] h-auto  mb-auto p-1" />
-                                <img src={Face2} className="float-right w-[40%] h-auto  mb-auto p-1" />
+                                <img src={Blood1} className="float-left w-[50%] h-auto  mb-auto p-1" />
+                                <img src={Face2} className="float-right w-[50%] h-auto  mb-auto p-1" />
                             </div>
                             <h1 className="flex-1 text-xl  text-black text-center font-bold "> It was okay</h1>
                         </Button>
@@ -53,18 +53,18 @@ function Flow() {
                             onClick={() => { setSelected(selected === "medium" ? "" : "medium") }}>
                             <div className="flex w-[30%]">
 
-                                <img src={Blood2} className="float-left w-[40%] h-auto mb-auto p-1" />
-                                <img src={Face3} className="float-right w-[40%] h-auto mb-auto p-1" />
+                                <img src={Blood2} className="float-left w-[50%] h-auto mb-auto p-1" />
+                                <img src={Face3} className="float-right w-[50%] h-auto mb-auto p-1" />
                             </div>
-                            <h1 className="flex-1 text-xl text-black text-center font-bold "> Couldn't do everything </h1>
+                            <h1 className="flex-1 text-xl text-black text-center font-bold "> Got through with pain medication </h1>
                         </Button>
 
                         <Button className={twMerge("flex w-full items-center bg-rose-400 p-2 border border-black shadow-xl", selected === "heavy" ? ' outline-black outline-[0.5vw]' : '')}
                             onClick={() => { setSelected(selected === "heavy" ? "" : "heavy") }}>
                             <div className="flex w-[30%]">
 
-                                <img src={Blood3} className="float-left w-[40%] h-auto mb-auto p-1" />
-                                <img src={Face4} className="float-right w-[40%] h-auto mb-auto p-1" />
+                                <img src={Blood3} className="float-left w-[50%] h-auto mb-auto p-1" />
+                                <img src={Face4} className="float-right w-[50%] h-auto mb-auto p-1" />
                             </div>
                             <h1 className="flex-1 text-xl text-black text-center font-bold "> Stopped me from doing things </h1>
                         </Button>
