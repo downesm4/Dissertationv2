@@ -1,6 +1,3 @@
-# Dissertationv2
-Final Year Project - Accessibility First Women's health app
-
 Using the repo on your own computer:
 - You will need xCode and Android Studio, both with simulators set up
 1. Clone the repository to your own device `https://github.com/downesm4/Dissertation`
@@ -25,4 +22,6 @@ feat(Layout): Added Mobile Template layout<br/>
 fix(UI): fixed padding and margins on homepage<br/>
 refactor(UI): Converted buttons into a reusable component<br/>
 style(other): Added comments to go code<br/>
+
+
 
