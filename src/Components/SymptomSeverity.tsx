@@ -17,7 +17,7 @@ export default function SymptomSeverity({ title, Icon }) {
 
             <div className="float-left flex items-center">
                 <img src={Icon} className="w-[20%] h-auto p-3" />
-                <h1 className="text-lg text-red-950"> {title} </h1>
+                <h1 className="text-lg text-black"> {title} </h1>
             </div>
 
             <div className="flex gap-x-2">
@@ -29,7 +29,7 @@ export default function SymptomSeverity({ title, Icon }) {
                             setSelected(prev => (prev === severity ? null : severity));
                         }}
                         className={twMerge(
-                            "w-8 h-8 border-[0.3vw] border-red-950",
+                            "w-8 h-8 border-[0.3vw] border-zinc-700",
                             selected !== null && severity <= selected
                                 ? "bg-rose-300"
                                 : "bg-rose-100"

@@ -118,7 +118,7 @@ function MenSymptoms() {
                             <Popup
                                 modal
                                 trigger={
-                                    <Button className="border-red-950 flex mx-5 -p-2 justify-center items-center mt-3">
+                                    <Button className="border-zinc-700 flex mx-5 -p-2 justify-center items-center mt-3">
                                         <img src={Plus} className="float-left w-[5%] h-auto mx-3" />
                                         <h1 className="flex-1 text-center"> Add Physical Symptom </h1>
                                     </Button>} >
@@ -144,7 +144,7 @@ function MenSymptoms() {
                             <Popup
                                 modal
                                 trigger={
-                                    <Button className="border-red-950 flex mx-5 mt-3 -p-2 justify-center items-center">
+                                    <Button className="border-zinc-700 flex mx-5 mt-3 -p-2 justify-center items-center">
                                         <img src={Plus} className="float-left w-[5%] h-auto mx-3" />
                                         <h1 className="flex-1 text-center"> Add Emotional Symptom </h1>
                                     </Button>} >

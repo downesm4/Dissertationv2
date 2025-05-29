@@ -1,6 +1,11 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap');
+@import "tailwindcss";
 
 body {
     font-family: 'Baloo Chettan 2', cursive;
+}
+
+.modal-overlay {
+    touch-action: auto;
+    -webkit-overflow-scrolling: touch;
 }

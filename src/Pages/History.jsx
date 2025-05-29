@@ -35,24 +35,24 @@ function History() {
             <div className="flex-col flex space-y-3 mt-5">
 
                 <div className="flex mx-5">
-                    <h1 className="float-left text-xl text-red-950"> Average Bleeding: </h1>
-                    <p className="flex-1 text-right text-lg font-bold text-red-950"> {bleeding[selected]} </p>
+                    <h1 className="float-left text-xl text-black"> Average Bleeding: </h1>
+                    <p className="flex-1 text-right text-lg font-bold text-black"> {bleeding[selected]} </p>
                 </div>
 
-                <div className="w-[80%] h-[0.3vw] mx-auto bg-red-950" />
+                <div className="w-[80%] h-[0.3vw] mx-auto bg-black" />
 
                 <div className="flex mx-5">
-                    <h1 className="float-left text-xl text-red-950"> Average Pain: </h1>
-                    <p className='flex-1 text-right text-lg font-bold text-red-950'> {pain[selected]} </p>
+                    <h1 className="float-left text-xl text-black"> Average Pain: </h1>
+                    <p className='flex-1 text-right text-lg font-bold text-black'> {pain[selected]} </p>
                 </div>
 
-                <div className="w-[80%] h-[0.3vw] mx-auto bg-red-950" />
+                <div className="w-[80%] h-[0.3vw] mx-auto bg-black" />
 
                 <div className="mx-5 mb-10">
-                    <h1 className='text-xl text-red-950'> Common symptoms: </h1>
+                    <h1 className='text-xl text-black'> Common symptoms: </h1>
                     <ul className='list-disc ml-5'>
                         {selectedArray.map((item, index) => (
-                            <li key={index} className="mx-10 text-lg font-bold text-red-950">{item}</li>
+                            <li key={index} className="mx-10 text-lg font-bold text-black">{item}</li>
                         ))}
                     </ul>
                 </div>

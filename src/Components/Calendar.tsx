@@ -67,7 +67,7 @@ const Calendar = () => {
                 day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear() // check if today
 
             days.push(
-                <div key={day} className={twMerge("h-10 flex items-center justify-center text-red-950 font-bold text-xl",
+                <div key={day} className={twMerge("h-10 flex items-center justify-center text-black font-bold text-xl",
                     isToday ? "rounded-full border-[0.2vw] border-pink-500 bg-rose-200" : "")}> {/* additional formatting to highlight current day*/}
                     {day}
                 </div>,
@@ -80,18 +80,18 @@ const Calendar = () => {
     return (
         <div className="bg-rose-100 rounded-3xl h-[450px] border-[0.75vw] border-pink-500 p-6 max-w-md mx-3">
             <div className="flex justify-between items-center mb-6">
-                <button onClick={PrevMonth} className="text-red-950 p-2 rounded-full">
+                <button onClick={PrevMonth} className="text-black p-2 rounded-full">
                     <ChevronLeft size={24} />
                 </button>
-                <h2 className="text-red-950 text-3xl font-bold">{months[currentMonth]}</h2>
-                <button onClick={NextMonth} className="text-red-950 p-2 rounded-full">
+                <h2 className="text-black text-3xl font-bold">{months[currentMonth]}</h2>
+                <button onClick={NextMonth} className="text-black p-2 rounded-full">
                     <ChevronRight size={24} />
                 </button>
             </div>
 
             <div className="grid grid-cols-7 gap-2">
                 {daysOfWeek.map((day) => (
-                    <div key={day} className="h-8 flex items-center justify-center text-red-950 font-bold">
+                    <div key={day} className="h-8 flex items-center justify-center text-black font-bold">
                         {day}
                     </div>
                 ))}

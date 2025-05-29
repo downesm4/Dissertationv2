@@ -25,7 +25,7 @@ const Topic = ({ title, children, className }) => {
 
     return (
         <div className={twMerge("", className)}>
-            <h1 className="text-3xl font-bold  text-red-950 text-left"> {title} </h1>
+            <h1 className="text-3xl font-bold  text-black text-left"> {title} </h1>
 
             <div className="relative">
                 <div ref={scrollRef} className="flex overflow-x-auto scroll-smooth">
@@ -37,7 +37,7 @@ const Topic = ({ title, children, className }) => {
                     <button
                         onClick={() => scrollToIndex(2)}
                         className=" absolute z-50 top-10 right-5 float-right flex items-center justify-center h-10 w-10 bg-rose-50 border border-pink-500 rounded-full">
-                        <ChevronRight className=" w-10 h-10 text-red-950" />
+                        <ChevronRight className=" w-10 h-10 text-black" />
                     </button>
                 }
 
@@ -45,7 +45,7 @@ const Topic = ({ title, children, className }) => {
                     <button
                         onClick={() => scrollToIndex(0)}
                         className=" absolute z-50 top-10 left-5 float-right flex items-center justify-center h-10 w-10 bg-rose-50 border border-pink-500 rounded-full">
-                        <ChevronLeft className=" w-10 h-10 text-red-950" />
+                        <ChevronLeft className=" w-10 h-10 text-black" />
                     </button>
                 }
 

@@ -13,7 +13,7 @@ const Layout = ({ children, title, allowBack, allowNav, current, className }) =>
       paddingLeft: 'env(safe-area-inset-left)',
       paddingRight: 'env(safe-area-inset-right)',
     }}>
-      <Header allowBack={allowBack} title={title} className="text-red-950 text-3xl font-bold text-center z-10 h-25% " />
+      <Header allowBack={allowBack} title={title} className="text-black text-3xl font-bold text-center z-10 h-25% " />
 
       <main className="flex-1 overflow-y-auto mx-5">
         {children}

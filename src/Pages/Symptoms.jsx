@@ -1,63 +1,64 @@
-import SymptomSeverity from "../Components/SymptomSeverity";
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
-import TextInput from '../Components/TextInput.tsx'
-import ConfirmButton from '../Components/ConfirmButton.tsx'
 import AdditionalPopUp from '../Components/AdditionalPopUp.tsx'
 import '../App.css'
 import { useState } from "react";
 
-import Headache from '../assets/Symptoms/headache.png'
-import Cramps from '../assets/Symptoms/cramps.png'
-import Joint from '../assets/Symptoms/joint.png'
-import Breasts from '../assets/Symptoms/breasts.png'
-import Acne from '../assets/Symptoms/acne.png'
-import Fatigue from '../assets/Symptoms/fatigue.png'
-import Sweet from '../assets/Symptoms/sweets.png'
-import Salty from '../assets/Symptoms/salt.png'
-import BackPain from '../assets/Symptoms/backpain.png'
-import Diarrhea from '../assets/Symptoms/diarrhea.png'
-import Constipation from '../assets/Symptoms/constipation.png'
-import Nausea from '../assets/Symptoms/nausea.png'
-import Vomit from '../assets/Symptoms/vomit.png'
+import Cramps from "../assets/v2/Symptoms/cramps.svg";
+import Headache from "../assets/v2/Symptoms/headache.svg";
+import Joint from "../assets/v2/Symptoms/joint.svg";
+import Breasts from "../assets/v2/Symptoms/pain.svg";
+import Acne from "../assets/v2/Symptoms/acne.svg";
+import Fatigue from "../assets/v2/Symptoms/tired.svg";
+import Sweet from "../assets/v2/Symptoms/sweets.svg";
+import Salty from "../assets/v2/Symptoms/salty.svg";
+import BackPain from "../assets/v2/Symptoms/backPain.svg";
+import Diarrhea from "../assets/v2/Symptoms/diarrhea.svg";
+import Constipation from "../assets/v2/Symptoms/constipation.svg";
+import Nausea from "../assets/v2/Symptoms/nausea.svg";
+import Vomit from "../assets/v2/Symptoms/vomit.svg";
 import Plus from '../assets/plus.png';
 import Default from '../assets/default.png'
 import Popup from "reactjs-popup";
+import { useNavigate } from 'react-router-dom';
 
 
 const initialSymptoms = [
     {
-        id: 1, symptom: "Headache", Icon: Headache
+        id: 1, symptom: "Headache", Icon: Headache, question: "How were the headaches?"
     }, {
-        id: 2, symptom: "Cramps", Icon: Cramps
+        id: 2, symptom: "Cramps", Icon: Cramps, question: "How were the cramps?"
     }, {
-        id: 3, symptom: "Joint aches and pains", Icon: Joint
+        id: 3, symptom: "Joint aches and pains", Icon: Joint, question: "How were the joint aches and pains?"
     }, {
-        id: 4, symptom: "Tender Breasts", Icon: Breasts
+        id: 4, symptom: "Tender Breasts", Icon: Breasts, question: "How were your boobs?"
     }, {
-        id: 5, symptom: "Acne", Icon: Acne
+        id: 5, symptom: "Acne", Icon: Acne, question: "How was the acne?"
     }, {
-        id: 6, symptom: "Fatigue", Icon: Fatigue
+        id: 6, symptom: "Fatigue", Icon: Fatigue, question: "How tired were you?"
     }, {
-        id: 7, symptom: "Sweet Cravings", Icon: Sweet
+        id: 7, symptom: "Sweet Cravings", Icon: Sweet, question: "How were the sweet cravings?"
     }, {
-        id: 8, symptom: "Salty Cravings", Icon: Salty
+        id: 8, symptom: "Salty Cravings", Icon: Salty, question: "How were the salty cravings?"
     }, {
-        id: 9, symptom: "Back Pain", Icon: BackPain
+        id: 9, symptom: "Back Pain", Icon: BackPain, question: "How was the back pain?"
     }, {
-        id: 10, symptom: "Diarrhea", Icon: Diarrhea
+        id: 10, symptom: "Diarrhea", Icon: Diarrhea, question: "How was the diarrhea?"
     }, {
-        id: 11, symptom: "Constipation", Icon: Constipation
+        id: 11, symptom: "Constipation", Icon: Constipation, question: "How was the constipation?"
     }, {
-        id: 12, symptom: "Nausea", Icon: Nausea
+        id: 12, symptom: "Nausea", Icon: Nausea, question: "How was the nausea?"
     }, {
-        id: 13, symptom: "Vomited", Icon: Vomit
+        id: 13, symptom: "Vomited", Icon: Vomit, question: "How was the throwing up?"
     }
 ];
 
 function Symptoms() {
 
     const [symptoms, setSymptoms] = useState(initialSymptoms);
+    const [showPopup, setShowPopup] = useState(false)
+    const [input, setInput] = useState("")
+    const navigate = useNavigate()
 
     const handlePopUp = (title) => {
         const newSymptom = {
@@ -66,48 +67,44 @@ function Symptoms() {
             Icon: Default
         };
         setSymptoms([...symptoms, newSymptom])
-
     }
 
     return (
-        <>
-            <Layout allowBack={true} allowNav={false} title={"Today's Symptoms"}>
+        <Layout allowBack={true} allowNav={false} >
 
-                <div className="flex-col space-y-8">
-
-                    <div className="mt-5 h-[410px] overflow-y-auto ">
-                        {symptoms.map(({ id, symptom, Icon }) => (
-                            <div key={id} >
-                                <SymptomSeverity Icon={Icon} title={symptom} />
-                            </div>
-                        ))}
-                    </div>
-
-                    <Popup
-                        modal
-                        trigger={
-                            <Button className="border-red-950 flex mx-5 -mt-2 -p-2 justify-center items-center">
-                                <img src={Plus} className="float-left w-[5%] h-auto mx-3" />
-                                <h1 className="flex-1 text-center"> Add Additional Symptom </h1>
-                            </Button>} >
-
-                        {(close) => <AdditionalPopUp onAddSymptom={(input) => {
-                            handlePopUp(input);
-                            close()
-                        }} onClose={() => { close() }} />}
-
-                    </Popup>
+            <h1 className="text-2xl text-center font-bold mb-10 mt-5"> Any Problems? </h1>
 
 
-                    <div className="flex-col space-y-3 mb-10">
-                        <TextInput rowNo={4} />
-                        <ConfirmButton className="mx-15" />
-                    </div>
+            <div className="flex-col space-y-8 mb-10">
+
+                <div className="flex flex-col mt-5 gap-y-5 overflow-y-auto ">
+                    {symptoms.map(({ id, symptom, Icon, question }) => (
+                        <Button key={id} className="bg-violet-200 flex items-center justify-center"
+                            onClick={() => navigate("/severity", { state: { q: { question }, type: "P" } })}>
+                            <img src={Icon} className="float-left w-[15%] h-auto " />
+                            <p className="flex-1 text-xl text-center"> {symptom} </p>
+
+                        </Button>
+                    ))}
+
+
+                    <Button onClick={() => setShowPopup(true)} className="border-zinc-700 bg-violet-200 flex justify-center items-center mb-5">
+                        <img src={Plus} className="float-left w-[10%] h-auto mx-3" />
+                        <h1 className="flex-1 text-xl text-center"> Add Additional Symptom </h1>
+                    </Button>
 
                 </div>
 
-            </Layout >
-        </>
+                {showPopup && (<AdditionalPopUp
+                    input={input}
+                    setInput={setInput}
+                    onClose={() => { setShowPopup(false); setInput("") }}
+                    onConfirm={() => { handlePopUp(input); setShowPopup(false); setInput("") }} />
+                )}
+
+            </div>
+
+        </Layout >
     )
 }
 

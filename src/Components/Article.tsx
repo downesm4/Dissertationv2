@@ -6,7 +6,7 @@ const Article = ({ title, image, className }) => {
     return (
         <div className="my-3 mr-3">
             <img src={image} className="w-[130px] h-[80px] object-cover object-center rounded-t-md" />
-            <h3 className={twMerge("w-[130px] h-[50px] text-center flex justify-center bg-white text-red-950 rounded-b-md overflow-hidden", className)}> {title} </h3>
+            <h3 className={twMerge("w-[130px] h-[50px] text-center flex justify-center bg-white text-black rounded-b-md overflow-hidden", className)}> {title} </h3>
         </div>
 
 

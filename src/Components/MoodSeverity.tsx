@@ -10,7 +10,7 @@ export default function MoodSeverity({ title, Icon }) {
         <div className="flex">
             <div className="float-left flex items-center">
                 <img src={Icon} className="w-[30%] h-auto p-3" />
-                <h1 className="text-lg font-medium text-red-950"> {title} </h1>
+                <h1 className="text-lg font-medium text-"> {title} </h1>
             </div>
             <div className="flex">
 

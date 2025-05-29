@@ -7,6 +7,7 @@ import Flow from './Pages/Flow.jsx'
 import Pain from './Pages/Pain.jsx'
 import Mood from './Pages/Mood.jsx'
 import Symptoms from './Pages/Symptoms.jsx'
+import Severity from './Pages/Severity.jsx'
 import Menopause from './Pages/Menopause.jsx'
 import MenSymptoms from './Pages/MenSymptoms'
 import History from './Pages/History.jsx'
@@ -20,6 +21,7 @@ function App() {
       <Route path="/flow" element={<Flow />} />
       <Route path="/pain" element={<Pain />} />
       <Route path="/symptoms" element={<Symptoms />} />
+      <Route path="/severity" element={<Severity />} />
       <Route path="/mood" element={<Mood />} />
       <Route path="/menopause" element={<Menopause />} />
       <Route path="/menSymptoms" element={<MenSymptoms />} />
