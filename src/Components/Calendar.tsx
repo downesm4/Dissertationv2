@@ -68,7 +68,7 @@ const Calendar = () => {
 
             days.push(
                 <div key={day} className={twMerge("h-10 flex items-center justify-center text-black font-bold text-xl",
-                    isToday ? "rounded-full border-[0.2vw] border-pink-500 bg-rose-200" : "")}> {/* additional formatting to highlight current day*/}
+                    isToday ? "rounded-full border-[0.2vw] border-zinc-700 bg-sky-200" : "")}> {/* additional formatting to highlight current day*/}
                     {day}
                 </div>,
             )
@@ -78,7 +78,7 @@ const Calendar = () => {
     }
 
     return (
-        <div className="bg-rose-100 rounded-3xl h-[450px] border-[0.75vw] border-pink-500 p-6 max-w-md mx-3">
+        <div className="bg-sky-100 rounded-3xl h-[450px] border-[0.75vw] border-zinc-700 p-6 max-w-md mx-3">
             <div className="flex justify-between items-center mb-6">
                 <button onClick={PrevMonth} className="text-black p-2 rounded-full">
                     <ChevronLeft size={24} />

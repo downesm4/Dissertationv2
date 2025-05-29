@@ -5,6 +5,12 @@ import Calendar from '../Components/Calendar.tsx'
 import rewind from '../assets/Rewind.png'
 import { useNavigate } from 'react-router-dom'
 
+import Blood from '../assets/v2/Bleeding/blood2.svg'
+import Pain from '../assets/v2/Pain/pain2.svg'
+import Physical from '../assets/v2/physical.svg'
+import Emotional from '../assets/v2/emotional.svg'
+import Mood from '../assets/v2/Mood.png'
+
 function Menopause() {
 
     let insight = "You are on track for less hot flushes this month"
@@ -13,37 +19,46 @@ function Menopause() {
     return (
         <Layout allowBack={false} allowNav={true} current={'menopause'} title={""}>
 
-            <Calendar />
+            <Calendar className="bg-orange-100" />
 
-            <div className="rounded-lg border-[0.25vw] border-pink-500 bg-rose-200 flex-row my-3">
-                <img src={rewind} className="float-left w-[15%] h-auto p-2" />
-                <h3 className="flex-1 text-md italic  text-black text-center px-5">  {insight} </h3>
-            </div>
-
-            <div className="grid grid-cols-2 gap-x-5 gap-y-5 mb-5">
+            <div className="flex flex-col mt-5 gap-x-5 gap-y-5 mb-5">
 
                 <Button
-                    className="col-span-2  text-center text-black font-bold text-2xl"
+                    className="flex bg-violet-200 justify-center items-center text-center text-black font-bold text-2xl"
                     onClick={() => navigate('/menSymptoms')}>
-                    Symptoms
+                    <img src={Physical} className='float-left w-[15%] h-auto ' />
+
+                    <p className='flex-1'> Physical Problems </p>
                 </Button>
 
                 <Button
-                    className="col-span-2 text-center text-black font-bold text-2xl"
+                    className="flex bg-emerald-200 justify-center items-center text-center text-black font-bold text-2xl"
+                    onClick={() => navigate('/menSymptoms')}>
+                    <img src={Emotional} className='float-left w-[15%] h-auto ' />
+
+                    <p className="flex-1"> Emotional Problems </p>
+                </Button>
+
+                <Button
+                    className="flex bg-amber-200 justify-center items-center text-center text-black font-bold text-2xl"
                     onClick={() => navigate('/mood')}>
-                    Mood
+                    <img src={Mood} className='float-left w-[15%] h-auto ' />
+
+                    <p className="flex-1"> Mood </p>
                 </Button>
 
                 <Button
-                    className="col-span-1 text-center text-black font-bold text-2xl"
+                    className="flex bg-rose-200 justify-center items-center text-center text-black font-bold text-2xl"
                     onClick={() => navigate('/flow')}>
-                    Bleeding
+                    <img src={Blood} className='float-left w-[15%] h-auto ' />
+                    <p className="flex-1"> Bleeding </p>
                 </Button>
 
                 <Button
-                    className="col-span-1 text-center text-black font-bold text-2xl"
+                    className="flex bg-cyan-200 justify-center items-center text-center text-black font-bold text-2xl"
                     onClick={() => navigate('/pain')}>
-                    Pain
+                    <img src={Pain} className='float-left w-[15%] h-auto ' />
+                    <p className='flex-1'> Pain </p>
                 </Button>
 
             </div>
