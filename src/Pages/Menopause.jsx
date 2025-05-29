@@ -25,7 +25,7 @@ function Menopause() {
 
                 <Button
                     className="flex bg-violet-200 justify-center items-center text-center text-black font-bold text-2xl"
-                    onClick={() => navigate('/menSymptoms')}>
+                    onClick={() => navigate('/physical')}>
                     <img src={Physical} className='float-left w-[15%] h-auto ' />
 
                     <p className='flex-1'> Physical Problems </p>
@@ -33,7 +33,7 @@ function Menopause() {
 
                 <Button
                     className="flex bg-emerald-200 justify-center items-center text-center text-black font-bold text-2xl"
-                    onClick={() => navigate('/menSymptoms')}>
+                    onClick={() => navigate('/emotional')}>
                     <img src={Emotional} className='float-left w-[15%] h-auto ' />
 
                     <p className="flex-1"> Emotional Problems </p>

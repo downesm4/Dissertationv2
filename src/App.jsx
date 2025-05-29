@@ -9,7 +9,8 @@ import Mood from './Pages/Mood.jsx'
 import Symptoms from './Pages/Symptoms.jsx'
 import Severity from './Pages/Severity.jsx'
 import Menopause from './Pages/Menopause.jsx'
-import MenSymptoms from './Pages/MenSymptoms'
+import Physical from './Pages/Physical.jsx'
+import Emotional from './Pages/Emotional.jsx'
 import History from './Pages/History.jsx'
 import Learning from './Pages/Learning.jsx'
 
@@ -24,7 +25,8 @@ function App() {
       <Route path="/severity" element={<Severity />} />
       <Route path="/mood" element={<Mood />} />
       <Route path="/menopause" element={<Menopause />} />
-      <Route path="/menSymptoms" element={<MenSymptoms />} />
+      <Route path="/physical" element={<Physical />} />
+      <Route path="/emotional" element={<Emotional />} />
       <Route path="/history" element={<History />} />
       <Route path="/learning" element={<Learning />} />
     </Routes>
