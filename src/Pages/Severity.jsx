@@ -65,7 +65,7 @@ function Severity() {
 
                     <div className="flex-col space-y-8 mb-10">
                         <TextInput rowNo={4} />
-                        <ConfirmButton className="bg-rose-200 mt-10 " />
+                        <ConfirmButton className={twMerge("mt-10", type === "P" ? 'bg-violet-200' : 'bg-emerald-200')} />
                     </div>
                 </div>
 
