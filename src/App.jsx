@@ -11,8 +11,10 @@ import Severity from './Pages/Severity.jsx'
 import Menopause from './Pages/Menopause.jsx'
 import Physical from './Pages/Physical.jsx'
 import Emotional from './Pages/Emotional.jsx'
-import History from './Pages/History.jsx'
+import Topic from './Pages/Topic.jsx'
 import Learning from './Pages/Learning.jsx'
+import Resources from './Pages/Resources.jsx'
+import History from './Pages/History.jsx'
 
 function App() {
 
@@ -28,7 +30,9 @@ function App() {
       <Route path="/physical" element={<Physical />} />
       <Route path="/emotional" element={<Emotional />} />
       <Route path="/history" element={<History />} />
-      <Route path="/learning" element={<Learning />} />
+      <Route path="/topic" element={<Topic />} />
+      <Route path="/resources" element={<Resources />} />
+
     </Routes>
   )
 }
