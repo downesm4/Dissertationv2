@@ -48,7 +48,7 @@ export default function NavBar({ current }: NavBarProps) {
             <button
                 className={twMerge(`flex flex-col items-center justify-center border-r w-[25%] border-zinc-700 py-3`,
                     selected === "learning" ? "bg-orange-200 inset-shadow-sm inset-shadow-orange-300" : "bg-white")}
-                onClick={() => { setSelected("learning"); navigate('/learning') }}>
+                onClick={() => { setSelected("learning"); navigate('/topic') }}>
                 <img src={Learning} className='w-[40%] h-auto' />
                 <p className="mb-2"> Learning</p>
             </button>
