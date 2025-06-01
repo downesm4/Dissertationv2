@@ -12,6 +12,9 @@ import Face2 from '../assets/v2/Faces/Face3.svg'
 import Face3 from '../assets/v2/Faces/Face4.svg'
 import None from '../assets/v2/none.svg'
 
+import { useTheme } from '../Context/ThemeContext.tsx'
+import { themes } from '../Styles/themes.js'
+
 function Severity() {
 
     const location = useLocation();
@@ -19,9 +22,12 @@ function Severity() {
     const q = location.state?.q;
     const type = location.state?.type;
 
+    const { theme } = useTheme()
+    const currentTheme = themes[theme]
+
     useEffect(() => {
         if (!q || !type) {
-            navigate("/"); // or another fallback route
+            navigate("/");
         }
     }, [q, type, navigate]);
 
@@ -37,35 +43,66 @@ function Severity() {
 
                     <div className="flex mx-3 mt-10 mb-8 space-y-10 gap-x-3">
 
-                        <Button className={twMerge("flex-col w-full items-center border border-zinc-700 shadow-xl h-[120px]", type === "P" ? 'bg-violet-100' : 'bg-emerald-100', selected === "none" ? 'outline-zinc-700 outline-[0.5vw]' : '')}
+                        <Button className={twMerge("flex-col w-full items-center border shadow-xl h-[120px]", selected === "none" ? 'outline-[0.5vw]' : '')}
+                            style={{
+                                background: type === "P" ? currentTheme.SymptomNone : currentTheme.EmotionalNone,
+                                borderColor: currentTheme.border,
+                                color: currentTheme.text,
+                                outlineColor: currentTheme.border
+                            }}
                             onClick={() => { setSelected(selected === "none" ? "" : "none") }}>
                             <img src={None} className=" w-[100%] h-auto  mb-auto p-1" />
-                            <h1 className=" text-lg text-black text-center font-bold "> None </h1>
+                            <h1 className=" text-lg text-center font-bold "> None </h1>
                         </Button>
 
-                        <Button className={twMerge("flex-col w-full items-center border border-zinc-700 shadow-xl h-[120px]", type === "P" ? 'bg-violet-200' : 'bg-emerald-200', selected === "light" ? 'outline-zinc-700 outline-[0.5vw] md:outline-[0.25vw]' : '')}
+                        <Button className={twMerge("flex-col w-full items-center border  shadow-xl h-[120px]", selected === "light" ? ' outline-[0.5vw]' : '')}
+                            style={{
+                                background: type === "P" ? currentTheme.Symptom1 : currentTheme.Emotional1,
+                                borderColor: currentTheme.border,
+                                color: currentTheme.text,
+                                outlineColor: currentTheme.border
+                            }}
                             onClick={() => { setSelected(selected === "light" ? "" : "light") }}>
                             <img src={Face1} className=" w-[100%] h-auto  mb-auto p-1" />
-                            <h1 className=" text-lg text-black text-center font-bold "> Okay</h1>
+                            <h1 className=" text-lg text-center font-bold "> Okay</h1>
                         </Button>
 
-                        <Button className={twMerge("flex-col w-full items-center border border-zinc-700 shadow-xl h-[120px]", type === "P" ? 'bg-violet-300' : 'bg-emerald-300', selected === "medium" ? ' outline-zinc-700 outline-[0.5vw]' : '')}
+                        <Button className={twMerge("flex-col w-full items-center border  shadow-xl h-[120px]", selected === "medium" ? ' outline-[0.5vw]' : '')}
+                            style={{
+                                background: type === "P" ? currentTheme.Symptom2 : currentTheme.Emotional2,
+                                borderColor: currentTheme.border,
+                                color: currentTheme.text,
+                                outlineColor: currentTheme.border
+                            }}
                             onClick={() => { setSelected(selected === "medium" ? "" : "medium") }}>
                             <img src={Face2} className=" w-[100%] h-auto mb-auto p-1" />
-                            <h1 className="text-lg text-black text-center font-bold "> Bad </h1>
+                            <h1 className="text-lg text-center font-bold "> Bad </h1>
                         </Button>
 
-                        <Button className={twMerge("flex-col w-full items-center border border-zinc-700 shadow-xl h-[120px]", type === "P" ? 'bg-violet-400' : 'bg-emerald-400', selected === "heavy" ? ' outline-zinc-700 outline-[0.5vw]' : '')}
+                        <Button className={twMerge("flex-col w-full items-center border shadow-xl h-[120px]", selected === "heavy" ? ' outline-[0.5vw]' : '')}
+                            style={{
+                                background: type === "P" ? currentTheme.Symptom3 : currentTheme.Emotional3,
+                                borderColor: currentTheme.border,
+                                color: currentTheme.text,
+                                outlineColor: currentTheme.border
+                            }}
                             onClick={() => { setSelected(selected === "heavy" ? "" : "heavy") }}>
                             <img src={Face3} className=" w-[100%] h-auto mb-auto p-1" />
-                            <h1 className=" text-lg text-black text-center font-bold "> Very Bad </h1>
+                            <h1 className=" text-lg text-center font-bold "> Very Bad </h1>
                         </Button>
 
                     </div>
 
                     <div className="flex-col space-y-8 mb-10">
                         <TextInput rowNo={4} />
-                        <ConfirmButton className={twMerge("mt-10", type === "P" ? 'bg-violet-200' : 'bg-emerald-200')} />
+
+                        <ConfirmButton style={{
+                            background: currentTheme.name === "Muted" ? currentTheme.ConfirmButton : type === "P" ? currentTheme.Symptom1 : currentTheme.Emotional1,
+                            borderColor: currentTheme.name === "Muted" ? currentTheme.ConfirmBorder : currentTheme.border,
+                            borderWidth: currentTheme.name === "Muted" ? "1.5vw" : "0.5vw",
+                            color: currentTheme.name === "Muted" ? currentTheme.NavBar : currentTheme.text,
+                            outlineColor: currentTheme.border
+                        }} />
                     </div>
                 </div>
 

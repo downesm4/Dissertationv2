@@ -20,7 +20,7 @@ const DropDown = ({ className, onClick }) => {
                     <div
                         onClick={() => { setOpen(!open) }}
                         className={twMerge(
-                            'rounded-full flex items-center justify-between border-[0.75vw] border-pink-500 bg-rose-100 shadow-md/50 p-3 text-black w-full', className)}>
+                            'rounded-full flex items-center justify-between border-[0.75vw] border-zinc-700 bg-rose-100 shadow-md/50 p-3 text-black w-full', className)}>
                         <h1 className="text-xl"> {selected} </h1>
                         <img src={drop} className="w-[10%] h-auto" />
 
@@ -28,7 +28,7 @@ const DropDown = ({ className, onClick }) => {
                 </div>
 
                 {open && (
-                    <div className=" absolute z-10 top-full mt-2 w-full bg-white rounded-md shadow-lg border border-pink-500">
+                    <div className=" absolute z-10 top-full mt-2 w-full bg-white rounded-md shadow-lg border border-zinc-700">
                         {options.map((option) => (
                             <button
                                 key={option} onClick={() => {

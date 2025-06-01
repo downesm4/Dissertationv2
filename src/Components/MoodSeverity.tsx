@@ -20,13 +20,13 @@ export default function MoodSeverity({ title, Icon }) {
                             onClick={() => {
                                 setSelected(severity)
                             }}
-                            className={twMerge("w-6 h-6 border-[0.5vw] border-pink-500 rounded-full ",
+                            className={twMerge("w-6 h-6 border-[0.5vw] border-zinc-700 rounded-full ",
                                 selected === severity ? "bg-rose-200" : "bg-transparent",
                                 selected !== null && severity <= selected
                                     ? "bg-rose-200"
                                     : "bg-rose-50")}
                         />
-                        {severity < 5 && <div className="w-3 h-0.5 bg-pink-500" />}
+                        {severity < 5 && <div className="w-3 h-0.5 bg-zinc-700" />}
 
                     </div>
                 ))}

@@ -42,13 +42,17 @@ const PhysicalSymptoms = [
     }
 ];
 
-
+import { useTheme } from '../Context/ThemeContext.tsx';
+import { themes } from '../Styles/themes.js';
 function Physical() {
 
     const [physicalSymptoms, setPhysical] = useState(PhysicalSymptoms);
     const [showPopup, setShowPopup] = useState(false)
     const [input, setInput] = useState("")
     const navigate = useNavigate()
+
+    const { theme } = useTheme()
+    const currentTheme = themes[theme]
 
 
     const handlePopUp = (title) => {
@@ -69,7 +73,14 @@ function Physical() {
                     <div>
                         <div className="flex flex-col overflow-y-auto gap-y-5 mt-5">
                             {physicalSymptoms.map(({ id, symptom, Icon, question }) => (
-                                <Button key={id} className="bg-violet-200 flex items-center justify-center"
+                                <Button key={id}
+                                    style={{
+                                        background: currentTheme.Symptom1,
+                                        borderColor: currentTheme.border,
+                                        color: currentTheme.text,
+                                        outlineColor: currentTheme.border
+                                    }}
+                                    className="flex items-center justify-center"
                                     onClick={() => navigate("/severity", { state: { q: { question }, type: "P" } })}>
                                     <img src={Icon} className="float-left w-[15%] h-auto " />
                                     <p className="flex-1 text-xl text-center"> {symptom} </p>
@@ -77,7 +88,14 @@ function Physical() {
                                 </Button>
                             ))}
 
-                            <Button onClick={() => setShowPopup(true)} className="border-zinc-700 bg-violet-200 flex justify-center items-center mb-5">
+                            <Button
+                                style={{
+                                    background: currentTheme.Symptom1,
+                                    borderColor: currentTheme.border,
+                                    color: currentTheme.text,
+                                    outlineColor: currentTheme.border
+                                }}
+                                onClick={() => setShowPopup(true)} className="flex justify-center items-center mb-5">
                                 <img src={Plus} className="float-left w-[10%] h-auto mx-3" />
                                 <h1 className="flex-1 text-xl text-center"> Add Additional Symptom </h1>
                             </Button>

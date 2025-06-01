@@ -3,14 +3,17 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { HashRouter } from 'react-router-dom'
 import App from './App.jsx'
+import { ThemeProvider } from './Context/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
 
   <StrictMode>
-    <HashRouter>
-      <div className="font-baloo font-extrabold">
-        <App />
-      </div>
-    </HashRouter>
+    <ThemeProvider>
+      <HashRouter>
+        <div className="font-baloo font-extrabold">
+          <App />
+        </div>
+      </HashRouter>
+    </ThemeProvider>
   </StrictMode>,
 )

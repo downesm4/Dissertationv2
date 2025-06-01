@@ -3,6 +3,8 @@ import { useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Button from "../Components/Button";
+import { useTheme } from "../Context/ThemeContext";
+import { themes } from "../Styles/themes";
 
 function Resources() {
 
@@ -12,6 +14,9 @@ function Resources() {
     const navigate = useNavigate()
     const resources = location.state?.resources;
     const title = location.state?.title
+
+    const { theme } = useTheme()
+    const currentTheme = themes[theme]
 
     useEffect(() => {
         if (!resources || !title) {
@@ -30,6 +35,7 @@ function Resources() {
 
                 {resources.map(({ id, question, Icon }) => (
                     <Button key={id} className="bg-orange-200 flex items-center justify-center"
+                        style={{ background: currentTheme.Learning2 }}
                         onClick={() => setSelected(selected === id ? "" : id)}>
                         <img src={Icon} className="float-left w-[15%] h-auto" />
                         <p className="flex-1 text-xl text-center"> {question} </p>

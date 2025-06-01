@@ -36,7 +36,7 @@ const Topic = ({ title, children, className }) => {
                 {start === true &&
                     <button
                         onClick={() => scrollToIndex(2)}
-                        className=" absolute z-50 top-10 right-5 float-right flex items-center justify-center h-10 w-10 bg-rose-50 border border-pink-500 rounded-full">
+                        className=" absolute z-50 top-10 right-5 float-right flex items-center justify-center h-10 w-10 bg-rose-50 border border-zinc-700 rounded-full">
                         <ChevronRight className=" w-10 h-10 text-black" />
                     </button>
                 }
@@ -44,7 +44,7 @@ const Topic = ({ title, children, className }) => {
                 {start === false &&
                     <button
                         onClick={() => scrollToIndex(0)}
-                        className=" absolute z-50 top-10 left-5 float-right flex items-center justify-center h-10 w-10 bg-rose-50 border border-pink-500 rounded-full">
+                        className=" absolute z-50 top-10 left-5 float-right flex items-center justify-center h-10 w-10 bg-rose-50 border border-zinc-700 rounded-full">
                         <ChevronLeft className=" w-10 h-10 text-black" />
                     </button>
                 }

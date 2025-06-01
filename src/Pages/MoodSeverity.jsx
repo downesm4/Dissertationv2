@@ -36,6 +36,8 @@ import Surprised1 from '../assets/v2/Moods/surprised1.png';
 import None from '../assets/v2/none.svg'
 
 import { twMerge } from "tailwind-merge";
+import { useTheme } from "../Context/ThemeContext";
+import { themes } from "../Styles/themes";
 
 function MoodSeverity() {
 
@@ -50,6 +52,8 @@ function MoodSeverity() {
     const icon2 = currentIcons[1]
     const icon3 = currentIcons[2]
     const [selected, setSelected] = useState()
+    const { theme } = useTheme();
+    const currentTheme = themes[theme]
 
     useEffect(() => {
         if (!q || !id) {
@@ -66,36 +70,60 @@ function MoodSeverity() {
 
                 <div className="flex flex-col justify-between mx-3 mt-10 mb-8 gap-y-3">
 
-                    <Button className={twMerge("basis-1/4 border border-zinc-700 shadow-xl bg-amber-100", selected === "none" ? 'outline-zinc-700 outline-[0.5vw]' : '')}
-                        onClick={() => { setSelected(selected === "none" ? "" : "none") }}>
+                    <Button className={twMerge(" border shadow-xl", selected === "none" ? 'outline-[0.5vw]' : '')}
+                        onClick={() => { setSelected(selected === "none" ? "" : "none") }}
+                        style={{
+                            background: currentTheme.MoodNone,
+                            borderColor: currentTheme.border,
+                            color: currentTheme.text,
+                            outlineColor: currentTheme.border
+                        }}>
                         <div className="flex flex-row justify-center items-center w-full h-full">
                             <img src={None} className="float-right w-[20%] h-auto  mb-auto p-1" />
-                            <h1 className="flex-1 text-xl text-black text-center font-bold "> None </h1>
+                            <h1 className="flex-1 text-xl text-center font-bold "> None </h1>
                         </div>
                     </Button>
 
-                    <Button className={twMerge("basis-1/4 border border-zinc-700 shadow-xl bg-amber-200", selected === "slightly" ? 'outline-zinc-700 outline-[0.5vw] md:outline-[0.25vw]' : '')}
-                        onClick={() => { setSelected(selected === "slightly" ? "" : "slightly") }}>
+                    <Button className={twMerge(" border shadow-xl", selected === "slightly" ? 'outline-[0.5vw]' : '')}
+                        onClick={() => { setSelected(selected === "slightly" ? "" : "slightly") }}
+                        style={{
+                            background: currentTheme.Mood1,
+                            borderColor: currentTheme.border,
+                            color: currentTheme.text,
+                            outlineColor: currentTheme.border
+                        }}>
                         <div className="flex flex-row justify-center items-center w-full h-full">
 
                             <img src={icon1} className="float-left w-[20%] h-auto  mb-auto p-1" />
-                            <h1 className="flex-1 text-xl text-black text-center font-bold "> Slightly </h1>
+                            <h1 className="flex-1 text-xl text-center font-bold "> Slightly </h1>
                         </div>
                     </Button>
 
-                    <Button className={twMerge("basis-1/4 border border-zinc-700 shadow-xl bg-amber-300", selected === "very" ? ' outline-zinc-700 outline-[0.5vw]' : '')}
-                        onClick={() => { setSelected(selected === "very" ? "" : "very") }}>
+                    <Button className={twMerge(" border shadow-xl", selected === "very" ? ' outline-[0.5vw]' : '')}
+                        onClick={() => { setSelected(selected === "very" ? "" : "very") }}
+                        style={{
+                            background: currentTheme.Mood2,
+                            borderColor: currentTheme.border,
+                            color: currentTheme.text,
+                            outlineColor: currentTheme.border
+                        }}>
                         <div className="flex flex-row justify-center items-center w-full h-full">
                             <img src={icon2} className=" float-left w-[20%] h-auto mb-auto p-1" />
-                            <h1 className="flex-1 text-xl text-black text-center font-bold "> Very </h1>
+                            <h1 className="flex-1 text-xl text-center font-bold "> Very </h1>
                         </div>
                     </Button>
 
-                    <Button className={twMerge("basis-1/4 border border-zinc-700 shadow-xl bg-amber-400", selected === "extremely" ? ' outline-zinc-700 outline-[0.5vw]' : '')}
-                        onClick={() => { setSelected(selected === "extremely" ? "" : "extremely") }}>
+                    <Button className={twMerge("border shadow-xl ", selected === "extremely" ? ' outline-[0.5vw]' : '')}
+                        onClick={() => { setSelected(selected === "extremely" ? "" : "extremely") }}
+                        style={{
+                            background: currentTheme.Mood3,
+                            borderColor: currentTheme.border,
+                            color: currentTheme.text,
+                            outlineColor: currentTheme.border
+                        }}>
                         <div className="flex flex-row justify-center items-center w-full h-full">
                             <img src={icon3} className="float-left w-[20%] h-auto mb-auto p-1" />
-                            <h1 className="flex-1 text-xl text-black text-center font-bold "> Extremely </h1>
+                            <h1 className="flex-1 text-xl text-center font-bold "> Extremely </h1>
                         </div>
                     </Button>
 
@@ -103,7 +131,13 @@ function MoodSeverity() {
 
                 <div className="flex-col space-y-8 mb-10">
                     <TextInput rowNo={4} />
-                    <ConfirmButton className="mt-10 bg-amber-200" />
+                    <ConfirmButton style={{
+                        background: currentTheme.name === "Muted" ? currentTheme.ConfirmButton : currentTheme.Mood1,
+                        borderColor: currentTheme.name === "Muted" ? currentTheme.ConfirmBorder : currentTheme.border,
+                        borderWidth: currentTheme.name === "Muted" ? "1.5vw" : "0.5vw",
+                        color: currentTheme.name === "Muted" ? currentTheme.NavBar : currentTheme.text,
+                        outlineColor: currentTheme.border
+                    }} />
                 </div>
             </div>
 

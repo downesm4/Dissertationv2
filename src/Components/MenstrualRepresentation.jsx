@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { useTheme } from "../Context/ThemeContext";
+import { themes } from "../Styles/themes";
 
 const Menstruation = () => {
+
+    const { theme } = useTheme()
+    const currentTheme = themes[theme]
+
 
     const size = 280
     const stroke = 30
@@ -140,26 +145,30 @@ const Menstruation = () => {
 
                 {/* Center Text */}
                 <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none mx-2">
-                    <p className="text-3xl font-bold text-black">Day {day}</p>
-                    <p className="text-black font-regular text-center mt-1">{getMessage()}</p>
+                    <p className="text-3xl font-bold " style={{ color: currentTheme.text }}>Day {day}</p>
+                    <p className="font-regular text-center mt-1" style={{ color: currentTheme.text }}>{getMessage()}</p>
                 </div>
 
 
             </div>
 
-            <div className="rounded-lg border-[0.25vw] border-zinc-700 bg-rose-100 my-3 grid grid-cols-4 gap-2 ">
+            <div className="rounded-lg border-[0.25vw] bg-rose-100 my-3 grid grid-cols-4 gap-2"
+                style={{
+                    color: currentTheme.text,
+                    borderColor: currentTheme.border,
+                }}>
                 {/* Key for Circle Graphic*/}
 
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-400 col-span-1 border-[0.2vw] border-black '> </div>
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-200 col-span-1 border-[0.2vw] border-black'> </div>
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-blue-200 col-span-1 border-[0.2vw] border-black'> </div>
-                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-blue-400 col-span-1 border-[0.2vw] border-black'> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-400 col-span-1 border-[0.2vw]'> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-rose-200 col-span-1 border-[0.2vw]'> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-blue-200 col-span-1 border-[0.2vw]'> </div>
+                <div className='flex items-center justify-center rounded-full w-6 h-6 mx-auto mt-2 bg-blue-400 col-span-1 border-[0.2vw]'> </div>
 
 
-                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Logged Bleeding </h3>
-                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Predicted Bleeding </h3>
-                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Predicted Fertile Days </h3>
-                <h3 className='col-span-1 text-center text-sm font-bold text-black'> Predicted Ovulation </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold'> Logged Bleeding </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold'> Predicted Bleeding </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold'> Predicted Fertile Days </h3>
+                <h3 className='col-span-1 text-center text-sm font-bold'> Predicted Ovulation </h3>
             </div>
 
         </div>

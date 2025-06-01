@@ -11,6 +11,9 @@ import Sanitary from '../assets/v2/Sanitary.png'
 import Conversation from '../assets/v2/Conversation.png'
 import Calendar from '../assets/v2/calendar.png'
 
+import { useTheme } from '../Context/ThemeContext.tsx'
+import { themes } from '../Styles/themes.js'
+
 import { useNavigate } from 'react-router-dom'
 const MensResources = [
     { id: 1, question: "VIDEO: What is a period?", Icon: Menstruation },
@@ -28,6 +31,8 @@ const MenoResources = [
 function Topic() {
 
     const navigate = useNavigate()
+    const { theme } = useTheme()
+    const currentTheme = themes[theme]
 
     return (
         <>
@@ -39,17 +44,19 @@ function Topic() {
 
                     <div className="flex-col mx-3 mt-10 space-y-10">
 
-                        <Button className={twMerge("flex flex-col w-full items-center bg-orange-100 p-2 border border-zinc-700 shadow-xl")}
+                        <Button className={twMerge("flex flex-col w-full items-center p-2 border shadow-xl")}
+                            style={{ background: currentTheme.Learning1, color: currentTheme.text, borderColor: currentTheme.border }}
                             onClick={() => navigate("/resources", { state: { resources: MensResources, title: "Menstruation" } })}>
                             <div className="flex items-center justify-center">
                                 <img src={Menstruation} className="float-left w-[25%] h-auto mb-auto p-1" />
-                                <h1 className="flex-1 text-3xl text-black text-center font-bold "> Menstruation </h1>
+                                <h1 className="flex-1 text-3xl text-center font-bold "> Menstruation </h1>
                             </div>
 
                             <p className="font-light text-lg text-center"> Menstruation is when a woman has a monthly period, and blood comes from her vagina as part of her body's natural cycle </p>
                         </Button>
 
-                        <Button className={twMerge("flex flex-col w-full items-center bg-orange-100 p-2  border border-zinc-700 shadow-xl")}
+                        <Button className={twMerge("flex flex-col w-full items-center p-2  border shadow-xl")}
+                            style={{ background: currentTheme.Learning1, color: currentTheme.text, borderColor: currentTheme.border }}
                             onClick={() => navigate("/resources", { state: { resources: MenoResources, title: "Menopause" } })}>
                             <div className="flex items-center justify-center">
                                 <img src={Menopause} className="float-left w-[25%] h-auto mb-auto p-1" />

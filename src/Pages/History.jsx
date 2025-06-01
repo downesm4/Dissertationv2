@@ -18,6 +18,8 @@ import fatigue from '../assets/v2/Symptoms/tired.svg'
 import joint from '../assets/v2/Symptoms/joint.svg'
 import back from '../assets/v2/Symptoms/backPain.svg'
 import acne from '../assets/v2/Symptoms/acne.svg'
+import { useTheme } from '../Context/ThemeContext.tsx';
+import { themes } from '../Styles/themes.js';
 
 
 function History() {
@@ -33,6 +35,8 @@ function History() {
     const [selectedArray, setSelectedArray] = useState(['Headache', 'Cramps', 'Sweet Cravings'])
     const [selectedIcons, setSelectedIcons] = useState([headache, cramps, sweets])
 
+    const { theme } = useTheme();
+    const currentTheme = themes[theme]
 
     const handleDropDownClick = () => {
         const randomIndex = Math.floor(Math.random() * 3);
@@ -56,9 +60,14 @@ function History() {
 
                 <div >
                     <div className="text-2xl font-bold">
-                        <h1 className="text-xl text-black font-bold"> Bleeding </h1>
+                        <h1 className="text-xl font-bold" style={{ color: currentTheme.text }}> Bleeding </h1>
                     </div>
-                    <div className="flex items-center justify-center bg-rose-200 border border-zinc-700 rounded-lg">
+                    <div className="flex items-center justify-center border rounded-lg"
+                        style={{
+                            background: currentTheme.Bleeding1,
+                            borderColor: currentTheme.border,
+                            color: currentTheme.text
+                        }}>
                         <img src={bloodIcon[selected]} className='float-left p-4 w-[30%] h-auto' />
                         <p className="flex-1 text-xl text-center font-bold block"> {bleeding[selected]} </p>
                     </div>
@@ -66,19 +75,32 @@ function History() {
 
                 <div>
                     <div className="text-2xl font-bold">
-                        <h1 className="text-xl text-black font-bold"> Pain </h1>
+                        <h1 className="text-xl font-bold" style={{ color: currentTheme.text }}> Pain </h1>
                     </div>
-                    <div className="flex items-center justify-center bg-cyan-200 border border-zinc-700  rounded-lg">
+                    <div className="flex items-center justify-center border rounded-lg"
+                        style={{
+                            background: currentTheme.Pain1,
+                            borderColor: currentTheme.border,
+                            color: currentTheme.text
+                        }}>
                         <img src={painIcon[selected]} className='float-left p-4 w-[30%] h-auto' />
-                        <p className="flex-1 text-xl text-center font-bold block"> {pain[selected]} </p>
+                        <p className="flex-1 text-xl text-center font-bold"> {pain[selected]} </p>
                     </div>
                 </div>
 
                 <div className="mb-10">
-                    <h1 className='text-xl text-black'> Common symptoms: </h1>
+                    <h1 className='text-xl'
+                        style={{
+                            color: currentTheme.text
+                        }}> Common symptoms: </h1>
                     <div className="grid grid-cols-3 gap-x-5">
                         {selectedArray.map((item, index) => (
-                            <div key={index} className="col-span-1 flex flex-col items-center justify-center bg-violet-200 border border-zinc-700 rounded-lg">
+                            <div key={index} className="col-span-1 flex flex-col items-center justify-center border rounded-lg"
+                                style={{
+                                    background: currentTheme.Symptom1,
+                                    borderColor: currentTheme.border,
+                                    color: currentTheme.text
+                                }}>
                                 <img src={selectedIcons[index]} className='p-1 w-[80%] h-auto' />
                                 <p className="text-lg text-center font-bold "> {item} </p>
                             </div>

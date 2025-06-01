@@ -11,20 +11,29 @@ import Physical from '../assets/v2/physical.svg'
 import Emotional from '../assets/v2/emotional.svg'
 import Mood from '../assets/v2/Mood.png'
 
+import { useTheme } from '../Context/ThemeContext.tsx'
+import { themes } from '../Styles/themes.js'
+
 function Menopause() {
 
-    let insight = "You are on track for less hot flushes this month"
     const navigate = useNavigate()
+    const { theme } = useTheme()
+    const currentTheme = themes[theme]
 
     return (
         <Layout allowBack={false} allowNav={true} current={'menopause'} title={""}>
 
-            <Calendar className="bg-orange-100" />
+            <Calendar />
 
             <div className="flex flex-col mt-5 gap-x-5 gap-y-5 mb-5">
 
                 <Button
-                    className="flex bg-violet-200 justify-center items-center text-center text-black font-bold text-2xl"
+                    className="flex justify-center items-center text-center font-bold text-2xl"
+                    style={{
+                        background: currentTheme.Symptom1,
+                        color: currentTheme.text,
+                        borderColor: currentTheme.border
+                    }}
                     onClick={() => navigate('/physical')}>
                     <img src={Physical} className='float-left w-[15%] h-auto ' />
 
@@ -32,31 +41,51 @@ function Menopause() {
                 </Button>
 
                 <Button
-                    className="flex bg-emerald-200 justify-center items-center text-center text-black font-bold text-2xl"
-                    onClick={() => navigate('/emotional')}>
+                    className="flex justify-center items-center text-center font-bold text-2xl"
+                    onClick={() => navigate('/emotional')}
+                    style={{
+                        background: currentTheme.Emotional1,
+                        color: currentTheme.text,
+                        borderColor: currentTheme.border
+                    }}>
                     <img src={Emotional} className='float-left w-[15%] h-auto ' />
 
                     <p className="flex-1"> Emotional Problems </p>
                 </Button>
 
                 <Button
-                    className="flex bg-amber-200 justify-center items-center text-center text-black font-bold text-2xl"
-                    onClick={() => navigate('/mood')}>
+                    className="flex justify-center items-center text-center font-bold text-2xl"
+                    onClick={() => navigate('/mood')}
+                    style={{
+                        background: currentTheme.Mood1,
+                        color: currentTheme.text,
+                        borderColor: currentTheme.border
+                    }}>
                     <img src={Mood} className='float-left w-[15%] h-auto ' />
 
                     <p className="flex-1"> Mood </p>
                 </Button>
 
                 <Button
-                    className="flex bg-rose-200 justify-center items-center text-center text-black font-bold text-2xl"
-                    onClick={() => navigate('/flow')}>
+                    className="flex justify-center items-center text-center font-bold text-2xl"
+                    onClick={() => navigate('/flow')}
+                    style={{
+                        background: currentTheme.Bleeding1,
+                        color: currentTheme.text,
+                        borderColor: currentTheme.border
+                    }}>
                     <img src={Blood} className='float-left w-[15%] h-auto ' />
                     <p className="flex-1"> Bleeding </p>
                 </Button>
 
                 <Button
                     className="flex bg-cyan-200 justify-center items-center text-center text-black font-bold text-2xl"
-                    onClick={() => navigate('/pain')}>
+                    onClick={() => navigate('/pain')}
+                    style={{
+                        background: currentTheme.Pain1,
+                        color: currentTheme.text,
+                        borderColor: currentTheme.border
+                    }}>
                     <img src={Pain} className='float-left w-[15%] h-auto ' />
                     <p className='flex-1'> Pain </p>
                 </Button>
