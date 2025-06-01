@@ -10,18 +10,26 @@ import Pain from '../assets/v2/Pain/pain2.svg'
 import Physical from '../assets/v2/physical.svg'
 import Emotional from '../assets/v2/emotional.svg'
 import Mood from '../assets/v2/Mood.png'
+import Settings from '../assets/v2/settings.png'
+
 
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
+import { useHomeIcon } from '../Context/HomeIconContext.tsx'
 
 function Menopause() {
 
     const navigate = useNavigate()
     const { theme } = useTheme()
     const currentTheme = themes[theme]
+    const { homeIcon } = useHomeIcon()
 
     return (
         <Layout allowBack={false} allowNav={true} current={'menopause'} title={""}>
+
+            <button onClick={() => navigate("/settings")} className="flex">
+                <img src={Settings} className="w-8 h-8 float-left mb-2" />
+            </button>
 
             <Calendar />
 
@@ -35,8 +43,7 @@ function Menopause() {
                         borderColor: currentTheme.border
                     }}
                     onClick={() => navigate('/physical')}>
-                    <img src={Physical} className='float-left w-[15%] h-auto ' />
-
+                    {homeIcon === 'Yes' && (<img src={Physical} className='float-left w-[15%] h-auto ' />)}
                     <p className='flex-1'> Physical Problems </p>
                 </Button>
 
@@ -48,7 +55,7 @@ function Menopause() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Emotional} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Emotional} className='float-left w-[15%] h-auto ' />)}
 
                     <p className="flex-1"> Emotional Problems </p>
                 </Button>
@@ -61,7 +68,7 @@ function Menopause() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Mood} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Mood} className='float-left w-[15%] h-auto ' />)}
 
                     <p className="flex-1"> Mood </p>
                 </Button>
@@ -74,7 +81,7 @@ function Menopause() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Blood} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Blood} className='float-left w-[15%] h-auto ' />)}
                     <p className="flex-1"> Bleeding </p>
                 </Button>
 
@@ -86,7 +93,7 @@ function Menopause() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Pain} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Pain} className='float-left w-[15%] h-auto ' />)}
                     <p className='flex-1'> Pain </p>
                 </Button>
 

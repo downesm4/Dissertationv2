@@ -24,16 +24,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, []);
 
-    useEffect(() => {
-        const root = document.body;
-        root.classList.remove('theme-Muted', 'theme-Colourful');
-        root.classList.add(`theme-${theme}`);
-
-        return () => {
-            root.classList.remove(`theme-${theme}`);
-        };
-    }, [theme]);
-
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             {children}

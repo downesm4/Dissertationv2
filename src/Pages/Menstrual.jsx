@@ -14,11 +14,14 @@ import Symptoms from '../assets/v2/symptoms.svg'
 import Mood from '../assets/v2/Mood.png'
 import Settings from '../assets/v2/settings.png'
 import { themes } from '../Styles/themes.js'
+import { useHomeIcon } from '../Context/HomeIconContext.tsx'
+import LinearRepresentation from '../Components/LinearRepresentation.tsx'
 
 function Menstrual() {
     const navigate = useNavigate();
-    const { theme } = useTheme()
-    const currentTheme = themes[theme]
+    const { theme } = useTheme();
+    const currentTheme = themes[theme];
+    const { homeIcon } = useHomeIcon();
 
 
     return (
@@ -38,7 +41,7 @@ function Menstrual() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Blood} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Blood} className='float-left w-[15%] h-auto ' />)}
                     <p className="flex-1"> Bleeding </p>
                 </Button>
 
@@ -50,7 +53,7 @@ function Menstrual() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Pain} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Pain} className='float-left w-[15%] h-auto ' />)}
                     <p className="flex-1"> Pain </p>
                 </Button>
 
@@ -62,7 +65,7 @@ function Menstrual() {
                         color: currentTheme.text,
                         borderColor: currentTheme.border
                     }}>
-                    <img src={Symptoms} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Symptoms} className='float-left w-[15%] h-auto ' />)}
                     <p className="flex-1"> Problems </p>
                 </Button>
 
@@ -76,7 +79,7 @@ function Menstrual() {
                         borderColor: currentTheme.border
                     }}>
 
-                    <img src={Mood} className='float-left w-[15%] h-auto ' />
+                    {homeIcon === 'Yes' && (<img src={Mood} className='float-left w-[15%] h-auto ' />)}
                     <p className="flex-1"> Moods </p>
                 </Button>
 
