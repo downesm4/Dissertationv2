@@ -33,7 +33,8 @@ export const themes = {
         Learning2: '#fecaca',
         PopUpButtons: '#fee2e2',
         ConfirmButton: '#f472b6',
-        ConfirmBorder: '#be123c'
+        ConfirmBorder: '#be123c',
+        LinearPress: '#fb7185'
     }, Colourful: {
         name: "Colourful",
         bg: '#f0f9ff',
@@ -68,6 +69,7 @@ export const themes = {
         Learning2: '#fed7aa',
         PopUpButtons: '#bae6fd',
         ConfirmButton: '#f9a8d4',
-        ConfirmBorder: '#be123c'
+        ConfirmBorder: '#be123c',
+        LinearPress: '#fb7185'
     }
 }

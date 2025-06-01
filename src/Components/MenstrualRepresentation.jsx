@@ -7,7 +7,6 @@ const Menstruation = () => {
     const { theme } = useTheme()
     const currentTheme = themes[theme]
 
-
     const size = 280
     const stroke = 30
     const center = size / 2
