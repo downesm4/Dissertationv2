@@ -9,6 +9,7 @@ import { RepresentationProvider } from './Context/RepresentationContext.tsx'
 import { CalendarsProvider } from './Context/CalendarContext.tsx'
 import { HomeWordingProvider } from './Context/HomeWordingContext.tsx'
 import { HeadingsProvider } from './Context/HeadingContext.tsx'
+import { FlowWordingProvider } from './Context/FlowWordingContext.tsx'
 
 createRoot(document.getElementById('root')).render(
 
@@ -19,11 +20,13 @@ createRoot(document.getElementById('root')).render(
           <CalendarsProvider>
             <HomeWordingProvider>
               <HeadingsProvider>
-                <HashRouter>
-                  <div className="font-baloo">
-                    <App />
-                  </div>
-                </HashRouter>
+                <FlowWordingProvider>
+                  <HashRouter>
+                    <div className="font-baloo">
+                      <App />
+                    </div>
+                  </HashRouter>
+                </FlowWordingProvider>
               </HeadingsProvider>
             </HomeWordingProvider>
           </CalendarsProvider>

@@ -54,9 +54,11 @@ function History() {
     return (
         <Layout allowBack={false} allowNav={true} current={'history'} title={""}>
 
-            <button onClick={() => setShowSettings(true)} className="flex">
-                <img src={Settings} className="w-8 h-8 float-left " />
-            </button>
+            <div className="absolute top-13 right-13 z-50">
+                <button onClick={() => setShowSettings(true)}>
+                    <img src={Settings} className="w-8 h-8" />
+                </button>
+            </div>
 
             {showSettings && (
 
