@@ -11,6 +11,8 @@ import { HomeWordingProvider } from './Context/HomeWordingContext.tsx'
 import { HeadingsProvider } from './Context/HeadingContext.tsx'
 import { FlowWordingProvider } from './Context/FlowWordingContext.tsx'
 import { FlowEmojiProvider } from './Context/FlowEmojisContext.tsx'
+import { PainEmojiProvider } from './Context/PainEmojisContext.tsx'
+import { PainWordingProvider } from './Context/PainWordingContext.tsx'
 
 createRoot(document.getElementById('root')).render(
 
@@ -23,11 +25,15 @@ createRoot(document.getElementById('root')).render(
               <HeadingsProvider>
                 <FlowWordingProvider>
                   <FlowEmojiProvider>
-                    <HashRouter>
-                      <div className="font-baloo">
-                        <App />
-                      </div>
-                    </HashRouter>
+                    <PainEmojiProvider>
+                      <PainWordingProvider>
+                        <HashRouter>
+                          <div className="font-baloo">
+                            <App />
+                          </div>
+                        </HashRouter>
+                      </PainWordingProvider>
+                    </PainEmojiProvider>
                   </FlowEmojiProvider>
                 </FlowWordingProvider>
               </HeadingsProvider>
