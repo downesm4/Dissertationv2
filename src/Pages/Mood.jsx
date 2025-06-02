@@ -38,25 +38,12 @@ const defaultMoods = [
 ];
 
 function Mood() {
-
-    const [moods, setMoods] = useState(defaultMoods);
-    const [showPopup, setShowPopup] = useState(false);
-    const [input, setInput] = useState("");
     const navigate = useNavigate();
 
     const { theme } = useTheme();
     const currentTheme = themes[theme];
 
     const { headings } = useHeadings()
-
-    const handlePopUp = (title) => {
-        const newMood = {
-            id: moods.length + 1,
-            emotion: title,
-            Icon: Default
-        };
-        setMoods([...moods, newMood])
-    }
 
     return (
         <>
@@ -66,8 +53,8 @@ function Mood() {
 
                     <h1 className="text-xl font-bold text-center mb-10"> {headings === "Questions" ? "How are you feeling today?" : "Today's Feelings"} </h1>
 
-                    <div className="mt-5 grid grid-cols-3 gap-y-6 gap-x-3 ">
-                        {moods.map(({ id, emotion, question, IC }) => (
+                    <div className="mt-5 grid grid-cols-2 gap-y-6 gap-x-6 ">
+                        {defaultMoods.map(({ id, emotion, question, IC }) => (
                             <div key={id}
                                 onClick={() => navigate("/mseverity", { state: { q: { question }, id: { id } } })}
                                 className="col-span-1 flex flex-col items-center justify-center border rounded-lg"
@@ -76,31 +63,12 @@ function Mood() {
                                     borderColor: currentTheme.border,
                                     color: currentTheme.text
                                 }}>
-                                <img src={IC} className='p-1 w-[70%] h-auto' />
-                                <p className="text-lg text-center font-bold "> {emotion} </p>
+                                <img src={IC} className='p-1 w-[50%] h-auto' />
+                                <p className="text-xl text-center font-bold "> {emotion} </p>
                             </div>
                         ))}
 
-                        <div key={9} onClick={() => setShowPopup(true)}
-                            className={twMerge("col-span-1 flex flex-col items-center justify-center border rounded-lg")}
-                            style={{
-                                background: currentTheme.Mood1,
-                                borderColor: currentTheme.border,
-                                color: currentTheme.text
-                            }}>
-                            <img src={Other} className='p-1 w-[80%] h-auto' />
-                            <p className="text-lg text-center font-bold "> Other </p>
-                        </div>
-
-
                     </div>
-
-                    {showPopup && (<AdditionalPopUp
-                        input={input}
-                        setInput={setInput}
-                        onClose={() => { setShowPopup(false); setInput("") }}
-                        onConfirm={() => { handlePopUp(input); setShowPopup(false); setInput("") }} />
-                    )}
 
                 </div>
 
