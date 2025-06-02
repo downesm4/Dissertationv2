@@ -18,8 +18,11 @@ import fatigue from '../assets/v2/Symptoms/tired.svg'
 import joint from '../assets/v2/Symptoms/joint.svg'
 import back from '../assets/v2/Symptoms/backPain.svg'
 import acne from '../assets/v2/Symptoms/acne.svg'
+import close from '../assets/v2/close.png'
+import Settings from '../assets/v2/settings.png'
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
+import { useCalendars } from '../Context/CalendarContext.tsx';
 
 
 function History() {
@@ -36,25 +39,51 @@ function History() {
     const [selectedIcons, setSelectedIcons] = useState([headache, cramps, sweets])
 
     const { theme } = useTheme();
-    const currentTheme = themes[theme]
+    const currentTheme = themes[theme];
+    const [showSettings, setShowSettings] = useState(false);
+    const { calendars, setCalendars } = useCalendars();
 
     const handleDropDownClick = () => {
         const randomIndex = Math.floor(Math.random() * 3);
 
         setSelected(randomIndex);
         setSelectedArray(symptoms[randomIndex]);
-        setSelectedIcons(symptomIcons[randomIndex])
+        setSelectedIcons(symptomIcons[randomIndex]);
     };
 
     return (
         <Layout allowBack={false} allowNav={true} current={'history'} title={""}>
 
+            <button onClick={() => setShowSettings(true)} className="flex">
+                <img src={Settings} className="w-8 h-8 float-left " />
+            </button>
+
+            {showSettings && (
+
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
+                    <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
+                        style={{
+                            backgroundColor: currentTheme.Calendar,
+                            border: currentTheme.border,
+                            color: currentTheme.text
+                        }}>
+
+                        <button onClick={() => setShowSettings(false)} className="flex">
+                            <img src={close} className="w-4 h-4 float-left mb-2" />
+                        </button>
+                        <h1 className="text-xl text-center mb-4">Do you want to see calendars on history pages? </h1>
+
+                        <Selector options={["Yes", "No"]} def={calendars} onChange={(newCalendars) => setCalendars(newCalendars)} > </Selector>
+
+                    </div>
+                </div>
+            )}
+
             <div className='mx-10'>
                 <Selector options={["Day", 'Week', 'Month']} def="Day" onChange={handleDropDownClick} />
-
             </div>
 
-            <Calendar />
+            {calendars === 'Yes' && (<Calendar />)}
 
             <div className="flex-col flex space-y-3 mt-5">
 
