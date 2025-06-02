@@ -25,42 +25,47 @@ import { useNavigate } from 'react-router-dom';
 
 const initialSymptoms = [
     {
-        id: 1, symptom: "Headache", Icon: Headache, question: "How were the headaches?"
+        id: 1, symptom: "Headache", Icon: Headache, question: ["How were the headaches?", "Headaches"]
     }, {
-        id: 2, symptom: "Cramps", Icon: Cramps, question: "How were the cramps?"
+        id: 2, symptom: "Cramps", Icon: Cramps, question: ["How were the cramps?", "Cramps"]
     }, {
-        id: 3, symptom: "Joint aches and pains", Icon: Joint, question: "How were the joint aches and pains?"
+        id: 3, symptom: "Joint aches and pains", Icon: Joint, question: ["How were the joint aches and pains?", "Joint Pain"]
     }, {
-        id: 4, symptom: "Tender Breasts", Icon: Breasts, question: "How were your boobs?"
+        id: 4, symptom: "Tender Breasts", Icon: Breasts, question: ["How were your boobs?", "Breasts"]
     }, {
-        id: 5, symptom: "Acne", Icon: Acne, question: "How was the acne?"
+        id: 5, symptom: "Acne", Icon: Acne, question: ["How was the acne?", "Acne"]
     }, {
-        id: 6, symptom: "Fatigue", Icon: Fatigue, question: "How tired were you?"
+        id: 6, symptom: "Fatigue", Icon: Fatigue, question: ["How tired were you?", "Fatigue"]
     }, {
-        id: 7, symptom: "Sweet Cravings", Icon: Sweet, question: "How were the sweet cravings?"
+        id: 7, symptom: "Sweet Cravings", Icon: Sweet, question: ["How were the sweet cravings?", "Sweet cravings"]
     }, {
-        id: 8, symptom: "Salty Cravings", Icon: Salty, question: "How were the salty cravings?"
+        id: 8, symptom: "Salty Cravings", Icon: Salty, question: ["How were the salty cravings?", "Salty Cravings"]
     }, {
-        id: 9, symptom: "Back Pain", Icon: BackPain, question: "How was the back pain?"
+        id: 9, symptom: "Back Pain", Icon: BackPain, question: ["How was the back pain?", "Back pain"]
     }, {
-        id: 10, symptom: "Diarrhea", Icon: Diarrhea, question: "How was the diarrhea?"
+        id: 10, symptom: "Diarrhea", Icon: Diarrhea, question: ["How was the diarrhea?", "Diarrhea"]
     }, {
-        id: 11, symptom: "Constipation", Icon: Constipation, question: "How was the constipation?"
+        id: 11, symptom: "Constipation", Icon: Constipation, question: ["How was the constipation?", "Constipation"]
     }, {
-        id: 12, symptom: "Nausea", Icon: Nausea, question: "How was the nausea?"
+        id: 12, symptom: "Nausea", Icon: Nausea, question: ["How was the nausea?", "Nausea"]
     }, {
-        id: 13, symptom: "Vomited", Icon: Vomit, question: "How was the throwing up?"
+        id: 13, symptom: "Vomited", Icon: Vomit, question: ["How was the throwing up?", "Threw Up"]
     }
 ];
 
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
+import { useHeadings } from '../Context/HeadingContext.tsx';
+
+
+
 function Symptoms() {
 
     const [symptoms, setSymptoms] = useState(initialSymptoms);
-    const [showPopup, setShowPopup] = useState(false)
-    const [input, setInput] = useState("")
-    const navigate = useNavigate()
+    const [showPopup, setShowPopup] = useState(false);
+    const [input, setInput] = useState("");
+    const navigate = useNavigate();
+    const { headings } = useHeadings();
 
     const { theme } = useTheme()
     const currentTheme = themes[theme]
@@ -77,7 +82,7 @@ function Symptoms() {
     return (
         <Layout allowBack={true} allowNav={false} >
 
-            <h1 className="text-2xl text-center font-bold mb-10 mt-5"> Any Problems? </h1>
+            <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "Any problems today?" : "Today's Symptoms"} </h1>
 
 
             <div className="flex-col space-y-8 mb-10">

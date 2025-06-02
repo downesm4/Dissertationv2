@@ -17,21 +17,24 @@ import None from '../assets/v2/none.svg'
 
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
-import { useNavigate } from 'react-router-dom'
+import { useHeadings } from '../Context/HeadingContext.tsx'
 
 function Pain() {
 
-    const [selected, setSelected] = useState()
-    const { theme } = useTheme()
-    const currentTheme = themes[theme]
-    const navigate = useNavigate()
+    const [selected, setSelected] = useState();
+    const { theme } = useTheme();
+    const currentTheme = themes[theme];
+
+    const { headings } = useHeadings();
+
+
     return (
         <>
             <Layout allowBack={true} allowNav={false} title={"Today's Pain"}>
 
                 <div className="flex-col space-y-10">
 
-                    <h1 className="text-2xl text-center font-bold mb-10 mt-5"> How was the pain today? </h1>
+                    <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "How was the pain today?" : "Today's Pain"} </h1>
 
                     <div className="flex-col mx-3 mt-5 space-y-7">
                         <Button className={twMerge("flex w-full items-center p-2 border  shadow-xl", selected === "none" ? 'outline-[0.5vw]' : '')}

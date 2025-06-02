@@ -14,6 +14,7 @@ import None from '../assets/v2/none.svg'
 
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
+import { useHeadings } from '../Context/HeadingContext.tsx'
 
 function Severity() {
 
@@ -32,6 +33,7 @@ function Severity() {
     }, [q, type, navigate]);
 
     const [selected, setSelected] = useState();
+    const { headings } = useHeadings();
 
     return (
         <>
@@ -39,7 +41,7 @@ function Severity() {
 
                 <div className="flex-col space-y-10">
 
-                    <h1 className="text-2xl text-center font-bold mb-10 mt-5">  {q ? q.question : "No question provided"} </h1>
+                    <h1 className="text-2xl text-center font-bold mb-10 mt-5">  {q ? headings === "Questions" ? q.question[0] : q.question[1] : "No question provided"} </h1>
 
                     <div className="flex mx-3 mt-10 mb-8 space-y-10 gap-x-3">
 

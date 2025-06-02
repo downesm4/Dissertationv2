@@ -38,6 +38,7 @@ import None from '../assets/v2/none.svg'
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "../Context/ThemeContext";
 import { themes } from "../Styles/themes";
+import { useHeadings } from "../Context/HeadingContext";
 
 function MoodSeverity() {
 
@@ -47,13 +48,14 @@ function MoodSeverity() {
     const q = location.state?.q;
     const id = location.state?.id;
     const currentID = id.id - 1;
-    const currentIcons = icons[currentID]
-    const icon1 = currentIcons[0]
-    const icon2 = currentIcons[1]
-    const icon3 = currentIcons[2]
-    const [selected, setSelected] = useState()
+    const currentIcons = icons[currentID];
+    const icon1 = currentIcons[0];
+    const icon2 = currentIcons[1];
+    const icon3 = currentIcons[2];
+    const [selected, setSelected] = useState();
     const { theme } = useTheme();
-    const currentTheme = themes[theme]
+    const currentTheme = themes[theme];
+    const { headings } = useHeadings();
 
     useEffect(() => {
         if (!q || !id) {
@@ -66,7 +68,7 @@ function MoodSeverity() {
 
             <div className="flex-col space-y-10"  >
 
-                <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {q ? q.question : "No question provided"}</h1>
+                <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {q ? headings === "Questions" ? q.question[0] : q.question[1] : "No question provided"} </h1>
 
                 <div className="flex flex-col justify-between mx-3 mt-10 mb-8 gap-y-3">
 

@@ -4,6 +4,7 @@ import { useTheme } from '../Context/ThemeContext.tsx'
 import { useHomeIcon } from '../Context/HomeIconContext.tsx';
 import { useRepresentation } from '../Context/RepresentationContext.tsx';
 import { useHomeWording } from '../Context/HomeWordingContext.tsx';
+import { useHeadings } from '../Context/HeadingContext.tsx';
 
 function AppSettings() {
 
@@ -11,11 +12,12 @@ function AppSettings() {
     const { homeIcon, setHomeIcon } = useHomeIcon();
     const { representation, setRepresentation } = useRepresentation();
     const { homeWording, setHomeWording } = useHomeWording()
+    const { headings, setHeadings } = useHeadings()
 
     return (
         <Layout allowBack={true} allowNav={false}>
 
-            <div className="flex-col space-y-10 mt-10">
+            <div className="flex-col space-y-5 mt-10">
 
                 <div className="flex-col">
                     <h1 className="flex text-left text-xl ml-5 "> Choose a colour scheme: </h1>
@@ -35,6 +37,11 @@ function AppSettings() {
                 <div className="flex-col">
                     <h1 className="flex text-left text-xl ml-5 "> Simple or complex wording for homepage buttons? </h1>
                     <Selector options={["Easy Read", "Complex"]} def={homeWording} onChange={(newHomeWording) => setHomeWording(newHomeWording)} > </Selector>
+                </div>
+
+                <div className="flex-col">
+                    <h1 className="flex text-left text-xl ml-5 "> Do you want question or statement headings? </h1>
+                    <Selector options={["Questions", "Statements"]} def={headings} onChange={(newHeadings) => setHeadings(newHeadings)} > </Selector>
                 </div>
 
             </div>

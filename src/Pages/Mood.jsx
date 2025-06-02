@@ -17,22 +17,23 @@ import { twMerge } from 'tailwind-merge';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
+import { useHeadings } from '../Context/HeadingContext.tsx';
 
 const defaultMoods = [
     {
-        id: 1, emotion: "Happy", question: "How happy were you?", IC: Happy3
+        id: 1, emotion: "Happy", question: ["How happy were you?", "Happy"], IC: Happy3
     }, {
-        id: 2, emotion: "Sad", question: "How sad were you?", IC: Sad3
+        id: 2, emotion: "Sad", question: ["How sad were you?", "Sad"], IC: Sad3
     }, {
-        id: 3, emotion: "Angry", question: "How angry were you?", IC: Angry3
+        id: 3, emotion: "Angry", question: ["How angry were you?", "Angry"], IC: Angry3
     }, {
-        id: 4, emotion: "Excited", question: "How excited were you?", IC: Excited3
+        id: 4, emotion: "Excited", question: ["How excited were you?", "Excited"], IC: Excited3
     }, {
-        id: 5, emotion: "Scared", question: "How scared were you?", IC: Scared3
+        id: 5, emotion: "Scared", question: ["How scared were you?", "Scared"], IC: Scared3
     }, {
-        id: 6, emotion: "Lonely", question: "How lonely were you?", IC: Lonely3
+        id: 6, emotion: "Lonely", question: ["How lonely were you?", "Lonely"], IC: Lonely3
     }, {
-        id: 7, emotion: "Surprised", question: "How surprised were you?", IC: Surprised3
+        id: 7, emotion: "Surprised", question: ["How surprised were you?", "Surprised"], IC: Surprised3
     }
 ];
 
@@ -40,12 +41,13 @@ function Mood() {
 
     const [moods, setMoods] = useState(defaultMoods);
     const [showPopup, setShowPopup] = useState(false);
-    const [input, setInput] = useState("")
-    const navigate = useNavigate()
+    const [input, setInput] = useState("");
+    const navigate = useNavigate();
 
-    const { theme } = useTheme()
-    const currentTheme = themes[theme]
+    const { theme } = useTheme();
+    const currentTheme = themes[theme];
 
+    const { headings } = useHeadings()
 
     const handlePopUp = (title) => {
         const newMood = {
@@ -62,7 +64,7 @@ function Mood() {
 
                 <div className="flex-col space-y-8">
 
-                    <h1 className="text-xl text-center mb-10"> How are you feeling? </h1>
+                    <h1 className="text-xl font-bold text-center mb-10"> {headings === "Questions" ? "How are you feeling today?" : "Today's Feelings"} </h1>
 
                     <div className="mt-5 grid grid-cols-3 gap-y-6 gap-x-3 ">
                         {moods.map(({ id, emotion, question, IC }) => (

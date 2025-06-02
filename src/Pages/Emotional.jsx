@@ -18,33 +18,35 @@ import LowMoods from '../assets/v2/Symptoms/depression.svg'
 import Abstinence from '../assets/v2/Symptoms/noSex.svg'
 import Confusion from '../assets/v2/Symptoms/confused.svg'
 import Default from '../assets/default.png'
+import { useHeadings } from '../Context/HeadingContext.tsx';
 
 
 const EmotionalSymptoms = [
     {
-        id: 1, symptom: "Mood Swings", Icon: MoodSwings, question: "How were the mood swings?"
+        id: 1, symptom: "Mood Swings", Icon: MoodSwings, question: ["How were the mood swings?", "Mood Swings"]
     }, {
-        id: 2, symptom: "Lack of Concentration", Icon: Concentration, question: "How was your concentration?"
+        id: 2, symptom: "Lack of Concentration", Icon: Concentration, question: ["How was your concentration?", "Concentration"]
     }, {
-        id: 3, symptom: "Anxiety", Icon: Anxiety, question: "How was your anxiety?"
+        id: 3, symptom: "Anxiety", Icon: Anxiety, question: ["How was your anxiety?", "Anxiety"]
     }, {
-        id: 4, symptom: "Low Moods", Icon: LowMoods, question: "How were the low moods?"
+        id: 4, symptom: "Low Moods", Icon: LowMoods, question: ["How were the low moods?", "Depression"]
     }, {
-        id: 5, symptom: "Low Sex Drive", Icon: Abstinence, question: "How was your sex drive?"
+        id: 5, symptom: "Low Sex Drive", Icon: Abstinence, question: ["How was your sex drive?", "Low Sex Drive"]
     }, {
-        id: 6, symptom: "Confusion", Icon: Confusion, question: "How was the confusion?"
+        id: 6, symptom: "Confusion", Icon: Confusion, question: ["How was the confusion?", "Confusion"]
     },
 ]
 
 function Emotional() {
 
     const [emotionalSymptoms, setEmotional] = useState(EmotionalSymptoms);
-    const [showPopup, setShowPopup] = useState(false)
-    const [input, setInput] = useState("")
-    const navigate = useNavigate()
+    const [showPopup, setShowPopup] = useState(false);
+    const [input, setInput] = useState("");
+    const navigate = useNavigate();
+    const { headings } = useHeadings();
 
-    const { theme } = useTheme()
-    const currentTheme = themes[theme]
+    const { theme } = useTheme();
+    const currentTheme = themes[theme];
 
     const handlePopUp = (title) => {
         const newSymptom = {
@@ -59,9 +61,12 @@ function Emotional() {
 
     return (
         <>
-            <Layout allowBack={true} allowNav={false} title={"Today's Symptoms"}>
+            <Layout allowBack={true} allowNav={false} >
 
                 <div className="flex-col space-y-8">
+
+                    <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "Any problems with your feelings today?" : "Today's Emotional Symptoms"} </h1>
+
 
                     <div>
                         <div className="flex flex-col overflow-y-auto gap-y-5 mt-5">

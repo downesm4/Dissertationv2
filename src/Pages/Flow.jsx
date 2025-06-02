@@ -17,15 +17,16 @@ import None from '../assets/v2/none.svg'
 
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
-import { useNavigate } from 'react-router-dom'
+import { useHeadings } from '../Context/HeadingContext.tsx'
 
 function Flow() {
 
-    const [selected, setSelected] = useState()
-    const navigate = useNavigate()
+    const [selected, setSelected] = useState();
 
-    const { theme } = useTheme()
-    const currentTheme = themes[theme]
+    const { theme } = useTheme();
+    const currentTheme = themes[theme];
+
+    const { headings } = useHeadings();
 
     return (
         <>
@@ -33,7 +34,7 @@ function Flow() {
 
                 <div className="flex-col space-y-10">
 
-                    <h1 className="text-2xl text-center font-bold mb-10 mt-5"> How was the bleeding today? </h1>
+                    <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "How was the bleeding today?" : "Today's Bleeding"} </h1>
 
                     <div className="flex-col mx-3 mt-5 space-y-7">
 
