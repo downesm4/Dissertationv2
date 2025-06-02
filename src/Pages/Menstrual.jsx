@@ -16,12 +16,14 @@ import Settings from '../assets/v2/settings.png'
 import { themes } from '../Styles/themes.js'
 import { useHomeIcon } from '../Context/HomeIconContext.tsx'
 import LinearRepresentation from '../Components/LinearRepresentation.tsx'
+import { useRepresentation } from '../Context/RepresentationContext.tsx'
 
 function Menstrual() {
     const navigate = useNavigate();
     const { theme } = useTheme();
     const currentTheme = themes[theme];
     const { homeIcon } = useHomeIcon();
+    const { representation } = useRepresentation();
 
 
     return (
@@ -31,7 +33,8 @@ function Menstrual() {
                 <img src={Settings} className="w-8 h-8 float-left " />
             </button>
 
-            <Menstruation />
+            {representation === 'Linear' && (<LinearRepresentation />)}
+            {representation === 'Circular' && (<Menstruation />)}
 
             <div className="flex flex-col mt-8 mb-10 gap-x-5 gap-y-5">
                 <Button className="flex items-center justify-center text-center font-bold text-2xl"
