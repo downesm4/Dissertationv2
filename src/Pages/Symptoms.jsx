@@ -1,6 +1,7 @@
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
 import AdditionalPopUp from '../Components/AdditionalPopUp.tsx'
+import Selector from '../Components/Selector.tsx'
 import '../App.css'
 import { useState } from "react";
 
@@ -19,53 +20,57 @@ import Nausea from "../assets/v2/Symptoms/nausea.svg";
 import Vomit from "../assets/v2/Symptoms/vomit.svg";
 import Plus from '../assets/plus.png';
 import Default from '../assets/default.png'
-import Popup from "reactjs-popup";
+import Settings from '../assets/v2/settings.png'
+import close from '../assets/v2/close.png'
 import { useNavigate } from 'react-router-dom';
 
 
 const initialSymptoms = [
     {
-        id: 1, symptom: "Headache", Icon: Headache, question: ["How were the headaches?", "Headaches"]
+        id: 1, symptom: ["Headache", "Headache"], Icon: Headache, question: ["How were your headaches?", "Headaches"]
     }, {
-        id: 2, symptom: "Cramps", Icon: Cramps, question: ["How were the cramps?", "Cramps"]
+        id: 2, symptom: ["Cramps in my tummy", "Cramps"], Icon: Cramps, question: ["How was the cramp pain?", "Cramps"]
     }, {
-        id: 3, symptom: "Joint aches and pains", Icon: Joint, question: ["How were the joint aches and pains?", "Joint Pain"]
+        id: 3, symptom: ["My body hurts", "Joint aches and pains"], Icon: Joint, question: ["How was your body pain?", "Joint Pain"]
     }, {
-        id: 4, symptom: "Tender Breasts", Icon: Breasts, question: ["How were your boobs?", "Breasts"]
+        id: 4, symptom: ["Boobs are sore", "Tender Breasts"], Icon: Breasts, question: ["How were your boobs?", "Breasts"]
     }, {
-        id: 5, symptom: "Acne", Icon: Acne, question: ["How was the acne?", "Acne"]
+        id: 5, symptom: ["Spots on my face and body", "Acne"], Icon: Acne, question: ["How was the spots on your face and body?", "Acne"]
     }, {
-        id: 6, symptom: "Fatigue", Icon: Fatigue, question: ["How tired were you?", "Fatigue"]
+        id: 6, symptom: ["I feel tired", "Fatigue"], Icon: Fatigue, question: ["How tired were you?", "Fatigue"]
     }, {
-        id: 7, symptom: "Sweet Cravings", Icon: Sweet, question: ["How were the sweet cravings?", "Sweet cravings"]
+        id: 7, symptom: ["I want more sweet food", "Sweet Cravings"], Icon: Sweet, question: ["How were your sweet cravings?", "Sweet cravings"]
     }, {
-        id: 8, symptom: "Salty Cravings", Icon: Salty, question: ["How were the salty cravings?", "Salty Cravings"]
+        id: 8, symptom: ["I want more salty food", "Salty Cravings"], Icon: Salty, question: ["How were your salty cravings?", "Salty Cravings"]
     }, {
-        id: 9, symptom: "Back Pain", Icon: BackPain, question: ["How was the back pain?", "Back pain"]
+        id: 9, symptom: ["Pain in my back", "Back Pain"], Icon: BackPain, question: ["How was your back pain?", "Back pain"]
     }, {
-        id: 10, symptom: "Diarrhea", Icon: Diarrhea, question: ["How was the diarrhea?", "Diarrhea"]
+        id: 10, symptom: ["Poop is loose", "Diarrhea"], Icon: Diarrhea, question: ["How loose was your poop?", "Diarrhea"]
     }, {
-        id: 11, symptom: "Constipation", Icon: Constipation, question: ["How was the constipation?", "Constipation"]
+        id: 11, symptom: ["Pooping is hard", "Constipation"], Icon: Constipation, question: ["How hard was pooping?", "Constipation"]
     }, {
-        id: 12, symptom: "Nausea", Icon: Nausea, question: ["How was the nausea?", "Nausea"]
+        id: 12, symptom: ["I felt sick", "Nausea"], Icon: Nausea, question: ["How sick did you feel?", "Nausea"]
     }, {
-        id: 13, symptom: "Vomited", Icon: Vomit, question: ["How was the throwing up?", "Threw Up"]
+        id: 13, symptom: ["I was sick", "Vomited"], Icon: Vomit, question: ["How was the throwing up?", "Threw Up"]
     }
 ];
 
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
 import { useHeadings } from '../Context/HeadingContext.tsx';
+import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
 
 
 
 function Symptoms() {
 
+    const [showSettings, setShowSettings] = useState(false)
     const [symptoms, setSymptoms] = useState(initialSymptoms);
     const [showPopup, setShowPopup] = useState(false);
     const [input, setInput] = useState("");
     const navigate = useNavigate();
     const { headings } = useHeadings();
+    const { symptomWording, setSymptomWording } = useSymptomWording();
 
     const { theme } = useTheme()
     const currentTheme = themes[theme]
@@ -82,12 +87,39 @@ function Symptoms() {
     return (
         <Layout allowBack={true} allowNav={false} >
 
-            <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "Any problems today?" : "Today's Symptoms"} </h1>
+            <div className="absolute top-13 right-13 z-50">
+                <button onClick={() => setShowSettings(true)}>
+                    <img src={Settings} className="w-8 h-8" />
+                </button>
+            </div>
 
+            {showSettings && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
+                    <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
+                        style={{
+                            backgroundColor: currentTheme.Calendar,
+                            border: currentTheme.border,
+                            color: currentTheme.text
+                        }}>
+
+                        <button onClick={() => setShowSettings(false)} className="flex">
+                            <img src={close} className="w-4 h-4 float-left mb-2" />
+                        </button>
+                        <div className="flex flex-col gap-y-3">
+                            <div className="border rounded-lg" style={{ borderColor: currentTheme.border }}>
+                                <h1 className="text-xl text-center mb-4 mx-3"> Do you want descriptive or abstract wording? </h1>
+                                <Selector className="mx-3" options={['Descriptive', 'Abstract']} def={symptomWording} onChange={(newSymptomWording) => setSymptomWording(newSymptomWording)} > </Selector>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "Any problems today?" : "Today's Symptoms"} </h1>
 
             <div className="flex-col space-y-8 mb-10">
 
-                <div className="flex flex-col mt-5 gap-y-5 overflow-y-auto ">
+                <div className="flex flex-col mt-5 gap-y-5 ">
                     {symptoms.map(({ id, symptom, Icon, question }) => (
                         <Button key={id} className=" flex items-center justify-center"
                             style={{
@@ -98,7 +130,7 @@ function Symptoms() {
                             }}
                             onClick={() => navigate("/severity", { state: { q: { question }, type: "P" } })}>
                             <img src={Icon} className="float-left w-[15%] h-auto " />
-                            <p className="flex-1 text-xl text-center"> {symptom} </p>
+                            <p className="flex-1 text-xl font-bold text-center"> {symptomWording === "Descriptive" ? symptom[0] : symptom[1]} </p>
 
                         </Button>
                     ))}

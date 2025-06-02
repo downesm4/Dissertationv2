@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
 import AdditionalPopUp from '../Components/AdditionalPopUp.tsx';
+import Selector from '../Components/Selector.tsx';
 import '../App.css'
 
 import Plus from '../assets/plus.png';
@@ -18,22 +19,25 @@ import LowMoods from '../assets/v2/Symptoms/depression.svg'
 import Abstinence from '../assets/v2/Symptoms/noSex.svg'
 import Confusion from '../assets/v2/Symptoms/confused.svg'
 import Default from '../assets/default.png'
+import Settings from '../assets/v2/settings.png'
+import close from '../assets/v2/close.png'
 import { useHeadings } from '../Context/HeadingContext.tsx';
+import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
 
 
 const EmotionalSymptoms = [
     {
-        id: 1, symptom: "Mood Swings", Icon: MoodSwings, question: ["How were the mood swings?", "Mood Swings"]
+        id: 1, symptom: ["My mood changes quickly and randomly", "Mood Swings"], Icon: MoodSwings, question: ["How were your mood changes today?", "Mood Swings"]
     }, {
-        id: 2, symptom: "Lack of Concentration", Icon: Concentration, question: ["How was your concentration?", "Concentration"]
+        id: 2, symptom: ["I cannot concentrate on things for a long time", "Lack of Concentration"], Icon: Concentration, question: ["How was your concentration?", "Concentration"]
     }, {
-        id: 3, symptom: "Anxiety", Icon: Anxiety, question: ["How was your anxiety?", "Anxiety"]
+        id: 3, symptom: ["I am anxious", "Anxiety"], Icon: Anxiety, question: ["How was your anxiety?", "Anxiety"]
     }, {
-        id: 4, symptom: "Low Moods", Icon: LowMoods, question: ["How were the low moods?", "Depression"]
+        id: 4, symptom: ["I am having negative emotions", "Low Moods"], Icon: LowMoods, question: ["How were your low moods?", "Low moods"]
     }, {
-        id: 5, symptom: "Low Sex Drive", Icon: Abstinence, question: ["How was your sex drive?", "Low Sex Drive"]
+        id: 5, symptom: ["I do not want to have sex", "Low Sex Drive"], Icon: Abstinence, question: ["How was your sex drive?", "Low Sex Drive"]
     }, {
-        id: 6, symptom: "Confusion", Icon: Confusion, question: ["How was the confusion?", "Confusion"]
+        id: 6, symptom: ["I am confused", "Confusion"], Icon: Confusion, question: ["How was your confusion?", "Confusion"]
     },
 ]
 
@@ -41,9 +45,11 @@ function Emotional() {
 
     const [emotionalSymptoms, setEmotional] = useState(EmotionalSymptoms);
     const [showPopup, setShowPopup] = useState(false);
+    const [showSettings, setShowSettings] = useState(false)
     const [input, setInput] = useState("");
     const navigate = useNavigate();
     const { headings } = useHeadings();
+    const { symptomWording, setSymptomWording } = useSymptomWording();
 
     const { theme } = useTheme();
     const currentTheme = themes[theme];
@@ -63,10 +69,37 @@ function Emotional() {
         <>
             <Layout allowBack={true} allowNav={false} >
 
+                <div className="absolute top-13 right-13 z-50">
+                    <button onClick={() => setShowSettings(true)}>
+                        <img src={Settings} className="w-8 h-8" />
+                    </button>
+                </div>
+
+                {showSettings && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
+                        <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
+                            style={{
+                                backgroundColor: currentTheme.Calendar,
+                                border: currentTheme.border,
+                                color: currentTheme.text
+                            }}>
+
+                            <button onClick={() => setShowSettings(false)} className="flex">
+                                <img src={close} className="w-4 h-4 float-left mb-2" />
+                            </button>
+                            <div className="flex flex-col gap-y-3">
+                                <div className="border rounded-lg" style={{ borderColor: currentTheme.border }}>
+                                    <h1 className="text-xl text-center mb-4 mx-3"> Do you want descriptive or abstract wording? </h1>
+                                    <Selector className="mx-3" options={['Descriptive', 'Abstract']} def={symptomWording} onChange={(newSymptomWording) => setSymptomWording(newSymptomWording)} > </Selector>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 <div className="flex-col space-y-8">
 
                     <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "Any problems with your feelings today?" : "Today's Emotional Symptoms"} </h1>
-
 
                     <div>
                         <div className="flex flex-col overflow-y-auto gap-y-5 mt-5">
@@ -79,7 +112,7 @@ function Emotional() {
                                         outlineColor: currentTheme.border
                                     }} onClick={() => navigate("/severity", { state: { q: { question }, type: "E" } })}>
                                     <img src={Icon} className="float-left w-[15%] h-auto " />
-                                    <p className="flex-1 text-xl text-center"> {symptom} </p>
+                                    <p className="flex-1 font-bold text-xl text-center"> {symptomWording === "Descriptive" ? symptom[0] : symptom[1]} </p>
 
                                 </Button>
                             ))}

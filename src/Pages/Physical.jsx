@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
 import AdditionalPopUp from '../Components/AdditionalPopUp.tsx';
+import Selector from '../Components/Selector.tsx';
 import '../App.css'
 
 import { useNavigate } from 'react-router-dom';
@@ -18,37 +19,41 @@ import Sleep from '../assets/v2/Symptoms/noSleep.svg'
 import Vagina from '../assets/v2/Symptoms/privateParts.svg'
 import Plus from '../assets/plus.png';
 import Default from '../assets/default.png'
-
+import Settings from '../assets/v2/settings.png'
+import close from '../assets/v2/close.png'
 
 const PhysicalSymptoms = [
     {
-        id: 1, symptom: "Fatigue", Icon: Fatigue, question: ["How tired were you?", "Fatigue"]
+        id: 1, symptom: ["I feel tired", "Fatigue"], Icon: Fatigue, question: ["How tired were you?", "Fatigue"]
     }, {
-        id: 2, symptom: "Headache", Icon: Headache, question: ["How was the headaches?", "Headaches"]
+        id: 2, symptom: ["Headache", "Headache"], Icon: Headache, question: ["How were your headaches?", "Headaches"]
     }, {
-        id: 3, symptom: "Tinnitus", Icon: Tinnitus, question: ["How was the ringing in your ear?", "Tinnitus"]
+        id: 3, symptom: ["There is a ringing in my ear I cannot stop", "Tinnitus"], Icon: Tinnitus, question: ["How was the ringing in your ear?", "Tinnitus"]
     }, {
-        id: 4, symptom: "Tender Breasts", Icon: Breasts, question: ["How were your boobs?", "Breasts"]
+        id: 4, symptom: ["My boobs are sore", "Tender Breasts"], Icon: Breasts, question: ["How were your boobs?", "Breasts"]
     }, {
-        id: 5, symptom: "Joint aches and pains", Icon: Joint, question: ["How were your joint aches and pains?", "Joint Pain"]
+        id: 5, symptom: ["My body hurts", "Joint aches and pains"], Icon: Joint, question: ["How were your aches and pains in your body?", "Joint Pain"]
     }, {
-        id: 7, symptom: "Hot Flushes", Icon: HotFlushes, question: ["How were the hot flushes?", "Hot flushes"]
+        id: 7, symptom: ["I get hot very quickly in my face and body", "Hot Flushes"], Icon: HotFlushes, question: ["How were your hot flushes?", "Hot flushes"]
     }, {
-        id: 8, symptom: "Night Sweats", Icon: NightSweats, question: ["How were the night sweats?", "Night Sweats"]
+        id: 8, symptom: ["Hot and Sweaty in my sleep", "Night Sweats"], Icon: NightSweats, question: ["How were your night sweats?", "Night Sweats"]
     }, {
-        id: 9, symptom: "Cannot Sleep", Icon: Sleep, question: ["How was your sleep?", "Sleep"]
+        id: 9, symptom: ["I cannot sleep through the night", "Cannot Sleep"], Icon: Sleep, question: ["How did you sleep?", "Sleep"]
     }, {
-        id: 10, symptom: "Painful Vagina", Icon: Vagina, question: ["How were your private parts?", "Private Parts"]
+        id: 10, symptom: ["My private parts are sore", "Painful Vagina"], Icon: Vagina, question: ["How were your private parts?", "Private Parts"]
     }
 ];
 
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
 import { useHeadings } from '../Context/HeadingContext.tsx';
+import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
+
 function Physical() {
 
     const [physicalSymptoms, setPhysical] = useState(PhysicalSymptoms);
     const [showPopup, setShowPopup] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
     const [input, setInput] = useState("");
     const navigate = useNavigate();
 
@@ -56,6 +61,7 @@ function Physical() {
     const currentTheme = themes[theme];
 
     const { headings } = useHeadings();
+    const { symptomWording, setSymptomWording } = useSymptomWording();
 
 
     const handlePopUp = (title) => {
@@ -70,6 +76,34 @@ function Physical() {
     return (
         <>
             <Layout allowBack={true} allowNav={false} >
+
+                <div className="absolute top-13 right-13 z-50">
+                    <button onClick={() => setShowSettings(true)}>
+                        <img src={Settings} className="w-8 h-8" />
+                    </button>
+                </div>
+
+                {showSettings && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
+                        <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
+                            style={{
+                                backgroundColor: currentTheme.Calendar,
+                                border: currentTheme.border,
+                                color: currentTheme.text
+                            }}>
+
+                            <button onClick={() => setShowSettings(false)} className="flex">
+                                <img src={close} className="w-4 h-4 float-left mb-2" />
+                            </button>
+                            <div className="flex flex-col gap-y-3">
+                                <div className="border rounded-lg" style={{ borderColor: currentTheme.border }}>
+                                    <h1 className="text-xl text-center mb-4 mx-3"> Do you want descriptive or abstract wording? </h1>
+                                    <Selector className="mx-3" options={['Descriptive', 'Abstract']} def={symptomWording} onChange={(newSymptomWording) => setSymptomWording(newSymptomWording)} > </Selector>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <div className="flex-col space-y-8">
 
@@ -88,7 +122,7 @@ function Physical() {
                                     className="flex items-center justify-center"
                                     onClick={() => navigate("/severity", { state: { q: { question }, type: "P" } })}>
                                     <img src={Icon} className="float-left w-[15%] h-auto " />
-                                    <p className="flex-1 text-xl text-center"> {symptom} </p>
+                                    <p className="flex-1 font-bold text-xl text-center"> {symptomWording === "Descriptive" ? symptom[0] : symptom[1]} </p>
 
                                 </Button>
                             ))}
