@@ -22,17 +22,19 @@ import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
 import { useHeadings } from '../Context/HeadingContext.tsx'
 import { useFlowWording } from '../Context/FlowWordingContext.tsx'
+import { useFlowEmoji } from '../Context/FlowEmojisContext.tsx'
 
 function Flow() {
 
     const [selected, setSelected] = useState();
-    const [showSettings, setShowSettings] = useState()
+    const [showSettings, setShowSettings] = useState(false);
 
     const { theme } = useTheme();
     const currentTheme = themes[theme];
 
     const { headings } = useHeadings();
     const { flowWording, setFlowWording } = useFlowWording();
+    const { flowEmoji, setFlowEmoji } = useFlowEmoji();
 
     return (
         <>
@@ -45,7 +47,6 @@ function Flow() {
                 </div>
 
                 {showSettings && (
-
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
                         <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
                             style={{
@@ -57,10 +58,17 @@ function Flow() {
                             <button onClick={() => setShowSettings(false)} className="flex">
                                 <img src={close} className="w-4 h-4 float-left mb-2" />
                             </button>
-                            <h1 className="text-xl text-center mb-4"> Do you want descriptive or abstract wording? </h1>
+                            <div className="flex flex-col gap-y-3">
+                                <div className="border rounded-lg" style={{ borderColor: currentTheme.border }}>
+                                    <h1 className="text-xl text-center mb-4 mx-3"> Do you want descriptive or abstract wording? </h1>
+                                    <Selector className="mx-3" options={['Descriptive', 'Abstract']} def={flowWording} onChange={(newFlowWording) => setFlowWording(newFlowWording)} > </Selector>
+                                </div>
 
-                            <Selector options={['Descriptive', 'Abstract']} def={flowWording} onChange={(newFlowWording) => setFlowWording(newFlowWording)} > </Selector>
-
+                                <div className="border rounded-lg" style={{ borderColor: currentTheme.border }}>
+                                    <h1 className="text-xl text-center mb-4 mx-3"> Do you want emojis? </h1>
+                                    <Selector className="mx-3" options={['Yes', 'No']} def={flowEmoji} onChange={(newFlowEmoji) => setFlowEmoji(newFlowEmoji)} > </Selector>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -83,7 +91,7 @@ function Flow() {
                                 <div className="flex w-[30%]">
 
                                     <img src={None} className="float-left w-[50%] h-auto  mb-auto p-1" />
-                                    <img src={Face1} className="float-right w-[50%] h-auto  mb-auto p-1" />
+                                    {flowEmoji === "Yes" && (<img src={Face1} className="float-right w-[50%] h-auto  mb-auto p-1" />)}
 
                                 </div>
                                 <h1 className="flex-1 text-xl text-center font-bold "> None </h1>
@@ -99,7 +107,7 @@ function Flow() {
                                 onClick={() => { setSelected(selected === "light" ? "" : "light") }}>
                                 <div className="flex w-[30%]">
                                     <img src={Blood1} className="float-left w-[50%] h-auto  mb-auto p-1" />
-                                    <img src={Face2} className="float-right w-[50%] h-auto  mb-auto p-1" />
+                                    {flowEmoji === "Yes" && (<img src={Face2} className="float-right w-[50%] h-auto  mb-auto p-1" />)}
                                 </div>
                                 <h1 className="flex-1 text-xl text-center font-bold "> {flowWording === 'Descriptive' ? "It was okay" : "Light"} </h1>
                             </Button>
@@ -115,7 +123,7 @@ function Flow() {
                                 <div className="flex w-[30%]">
 
                                     <img src={Blood2} className="float-left w-[50%] h-auto mb-auto p-1" />
-                                    <img src={Face3} className="float-right w-[50%] h-auto mb-auto p-1" />
+                                    {flowEmoji === "Yes" && (<img src={Face3} className="float-right w-[50%] h-auto mb-auto p-1" />)}
                                 </div>
                                 <h1 className="flex-1 text-xl text-center font-bold "> {flowWording === 'Descriptive' ? "Couldn't do everything" : "Medium"} </h1>
                             </Button>
@@ -131,7 +139,7 @@ function Flow() {
                                 <div className="flex w-[30%]">
 
                                     <img src={Blood3} className="float-left w-[50%] h-auto mb-auto p-1" />
-                                    <img src={Face4} className="float-right w-[50%] h-auto mb-auto p-1" />
+                                    {flowEmoji === "Yes" && (<img src={Face4} className="float-right w-[50%] h-auto mb-auto p-1" />)}
                                 </div>
                                 <h1 className="flex-1 text-xl text-center font-bold "> {flowWording === 'Descriptive' ? "Stopped me from doing things" : "Heavy"} </h1>
                             </Button>
