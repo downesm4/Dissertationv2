@@ -5,7 +5,7 @@ import ReactDOM from "react-dom"
 import { useTheme } from "../Context/ThemeContext";
 import { themes } from "../Styles/themes";
 
-const AdditionalPopUp = ({ input, setInput, onClose, onConfirm }) => {
+const AdditionalPopUp = ({ input, setInput, input2, setInput2, onClose, onConfirm }) => {
 
     const { theme } = useTheme()
     const currentTheme = themes[theme]
@@ -27,7 +27,7 @@ const AdditionalPopUp = ({ input, setInput, onClose, onConfirm }) => {
                     color: currentTheme.text
                 }}>
                 <h1 className="text-xl text-center mb-4">What would you like to add?</h1>
-                <div className="flex items-center mb-4">
+                <div className="flex-col items-center mb-4">
                     <h1 className="text-xl">Name:</h1>
                     <input
                         type="text"
@@ -36,8 +36,21 @@ const AdditionalPopUp = ({ input, setInput, onClose, onConfirm }) => {
                         onFocus={(e) => {
                             e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }}
-                        className="border-[0.3vw] rounded-md border-zinc-700 bg-white px-3 mx-2"
+                        className="w-[95%] border-[0.3vw] rounded-md border-zinc-700 bg-white px-3 mx-2"
                         placeholder="Name"
+                    />
+                </div>
+                <div className="flex-col items-center mb-4">
+                    <h1 className="text-xl">Question for Severity:</h1>
+                    <input
+                        type="text"
+                        value={input2}
+                        onChange={(e) => setInput2(e.target.value)}
+                        onFocus={(e) => {
+                            e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }}
+                        className="w-[95%] border-[0.3vw] rounded-md border-zinc-700 bg-white px-3 mx-2"
+                        placeholder="Question"
                     />
                 </div>
                 <div className="flex gap-3">

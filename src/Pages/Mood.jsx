@@ -1,7 +1,5 @@
 import Layout from '../Templates/MobileLayout.tsx'
-import AdditionalPopUp from '../Components/AdditionalPopUp.tsx'
 import '../App.css'
-import { useState } from 'react'
 
 import Happy3 from '../assets/v2/Moods/happy3.png';
 import Sad3 from '../assets/v2/Moods/sad3.png';
@@ -11,9 +9,6 @@ import Scared3 from '../assets/v2/Moods/scared3.png';
 import Lonely3 from '../assets/v2/Moods/lonely3.png';
 import Surprised3 from '../assets/v2/Moods/suprised3.png';
 
-import Other from '../assets/v2/other.png';
-import Default from '../assets/default.png'
-import { twMerge } from 'tailwind-merge';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';

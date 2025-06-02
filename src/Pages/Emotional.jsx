@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Layout from '../Templates/MobileLayout.tsx'
@@ -43,10 +43,14 @@ const EmotionalSymptoms = [
 
 function Emotional() {
 
-    const [emotionalSymptoms, setEmotional] = useState(EmotionalSymptoms);
+    const [emotionalSymptoms, setEmotional] = useState(() => {
+        const saved = localStorage.getItem("emotionalSymptoms");
+        return saved ? JSON.parse(saved) : EmotionalSymptoms
+    });
     const [showPopup, setShowPopup] = useState(false);
     const [showSettings, setShowSettings] = useState(false)
     const [input, setInput] = useState("");
+    const [input2, setInput2] = useState("")
     const navigate = useNavigate();
     const { headings } = useHeadings();
     const { symptomWording, setSymptomWording } = useSymptomWording();
@@ -54,14 +58,20 @@ function Emotional() {
     const { theme } = useTheme();
     const currentTheme = themes[theme];
 
-    const handlePopUp = (title) => {
+    const handlePopUp = (title, question) => {
         const newSymptom = {
             id: emotionalSymptoms.length + 1,
-            symptom: title,
-            Icon: Default
+            symptom: [title, title],
+            Icon: Default,
+            question: [question, question]
+
         };
         setEmotional([...emotionalSymptoms, newSymptom])
     }
+
+    useEffect(() => {
+        localStorage.setItem("emotionalSymptoms", JSON.stringify(emotionalSymptoms))
+    })
 
 
 
@@ -135,8 +145,10 @@ function Emotional() {
                     {showPopup && (<AdditionalPopUp
                         input={input}
                         setInput={setInput}
+                        input2={input2}
+                        setInput2={setInput2}
                         onClose={() => { setShowPopup(false); setInput("") }}
-                        onConfirm={() => { handlePopUp(input); setShowPopup(false); setInput("") }} />
+                        onConfirm={() => { handlePopUp(input, input2); setShowPopup(false); setInput("") }} />
                     )}
 
                 </div>

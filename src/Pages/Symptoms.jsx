@@ -3,7 +3,7 @@ import Button from '../Components/Button.tsx'
 import AdditionalPopUp from '../Components/AdditionalPopUp.tsx'
 import Selector from '../Components/Selector.tsx'
 import '../App.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Cramps from "../assets/v2/Symptoms/cramps.svg";
 import Headache from "../assets/v2/Symptoms/headache.svg";
@@ -60,14 +60,18 @@ import { themes } from '../Styles/themes.js';
 import { useHeadings } from '../Context/HeadingContext.tsx';
 import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
 
-
-
 function Symptoms() {
 
     const [showSettings, setShowSettings] = useState(false)
-    const [symptoms, setSymptoms] = useState(initialSymptoms);
+    const [symptoms, setSymptoms] = useState(() => {
+        const saved = localStorage.getItem("symptoms");
+        return saved ? JSON.parse(saved) : initialSymptoms
+    });
     const [showPopup, setShowPopup] = useState(false);
     const [input, setInput] = useState("");
+    const [input2, setInput2] = useState("");
+
+
     const navigate = useNavigate();
     const { headings } = useHeadings();
     const { symptomWording, setSymptomWording } = useSymptomWording();
@@ -75,14 +79,20 @@ function Symptoms() {
     const { theme } = useTheme()
     const currentTheme = themes[theme]
 
-    const handlePopUp = (title) => {
+    const handlePopUp = (title, question) => {
         const newSymptom = {
             id: symptoms.length + 1,
-            symptom: title,
-            Icon: Default
+            symptom: [title, title],
+            Icon: Default,
+            question: [question, question]
+
         };
         setSymptoms([...symptoms, newSymptom])
     }
+
+    useEffect(() => {
+        localStorage.setItem("symptoms", JSON.stringify(symptoms))
+    })
 
     return (
         <Layout allowBack={true} allowNav={false} >
@@ -152,8 +162,10 @@ function Symptoms() {
                 {showPopup && (<AdditionalPopUp
                     input={input}
                     setInput={setInput}
+                    input2={input2}
+                    setInput2={setInput2}
                     onClose={() => { setShowPopup(false); setInput("") }}
-                    onConfirm={() => { handlePopUp(input); setShowPopup(false); setInput("") }} />
+                    onConfirm={() => { handlePopUp(input, input2); setShowPopup(false); setInput("") }} />
                 )}
 
             </div>

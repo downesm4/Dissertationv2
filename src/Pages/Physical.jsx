@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
@@ -51,10 +51,14 @@ import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
 
 function Physical() {
 
-    const [physicalSymptoms, setPhysical] = useState(PhysicalSymptoms);
+    const [physicalSymptoms, setPhysical] = useState(() => {
+        const saved = localStorage.getItem("physicalSymptoms");
+        return saved ? JSON.parse(saved) : PhysicalSymptoms
+    });
     const [showPopup, setShowPopup] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [input, setInput] = useState("");
+    const [input2, setInput2] = useState("");
     const navigate = useNavigate();
 
     const { theme } = useTheme();
@@ -64,14 +68,21 @@ function Physical() {
     const { symptomWording, setSymptomWording } = useSymptomWording();
 
 
-    const handlePopUp = (title) => {
+    const handlePopUp = (title, question) => {
         const newSymptom = {
             id: physicalSymptoms.length + 1,
-            symptom: title,
-            Icon: Default
+            symptom: [title, title],
+            Icon: Default,
+            question: [question, question]
+
         };
         setPhysical([...physicalSymptoms, newSymptom])
     }
+
+    useEffect(() => {
+        localStorage.setItem("physicalSymptoms", JSON.stringify(physicalSymptoms))
+
+    })
 
     return (
         <>
@@ -141,12 +152,13 @@ function Physical() {
 
                         </div>
 
-
                         {showPopup && (<AdditionalPopUp
                             input={input}
                             setInput={setInput}
+                            input2={input2}
+                            setInput2={setInput2}
                             onClose={() => { setShowPopup(false); setInput("") }}
-                            onConfirm={() => { handlePopUp(input); setShowPopup(false); setInput("") }} />
+                            onConfirm={() => { handlePopUp(input, input2); setShowPopup(false); setInput("") }} />
                         )}
                     </div>
 
