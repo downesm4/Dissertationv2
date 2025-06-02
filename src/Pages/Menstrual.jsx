@@ -17,6 +17,7 @@ import { themes } from '../Styles/themes.js'
 import { useHomeIcon } from '../Context/HomeIconContext.tsx'
 import LinearRepresentation from '../Components/LinearRepresentation.tsx'
 import { useRepresentation } from '../Context/RepresentationContext.tsx'
+import { useHomeWording } from '../Context/HomeWordingContext.tsx'
 
 function Menstrual() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Menstrual() {
     const currentTheme = themes[theme];
     const { homeIcon } = useHomeIcon();
     const { representation } = useRepresentation();
-
+    const { homeWording } = useHomeWording();
 
     return (
         <Layout allowBack={false} allowNav={true} current={'menstruation'} title={""}>
@@ -45,7 +46,7 @@ function Menstrual() {
                         borderColor: currentTheme.border
                     }}>
                     {homeIcon === 'Yes' && (<img src={Blood} className='float-left w-[15%] h-auto ' />)}
-                    <p className="flex-1"> Bleeding </p>
+                    <p className="flex-1"> {homeWording === 'Easy Read' ? 'Bleeding' : 'Menstrual Flow'} </p>
                 </Button>
 
                 <Button
@@ -57,7 +58,7 @@ function Menstrual() {
                         borderColor: currentTheme.border
                     }}>
                     {homeIcon === 'Yes' && (<img src={Pain} className='float-left w-[15%] h-auto ' />)}
-                    <p className="flex-1"> Pain </p>
+                    <p className="flex-1"> {homeWording === 'Easy Read' ? 'Pain' : 'Menstrual Pain'} </p>
                 </Button>
 
                 <Button
@@ -69,7 +70,7 @@ function Menstrual() {
                         borderColor: currentTheme.border
                     }}>
                     {homeIcon === 'Yes' && (<img src={Symptoms} className='float-left w-[15%] h-auto ' />)}
-                    <p className="flex-1"> Problems </p>
+                    <p className="flex-1"> {homeWording === 'Easy Read' ? 'Problems' : 'Symptoms'} </p>
                 </Button>
 
                 <Button

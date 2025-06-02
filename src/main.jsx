@@ -7,6 +7,7 @@ import { ThemeProvider } from './Context/ThemeContext.tsx'
 import { HomeIconProvider } from './Context/HomeIconContext.tsx'
 import { RepresentationProvider } from './Context/RepresentationContext.tsx'
 import { CalendarsProvider } from './Context/CalendarContext.tsx'
+import { HomeWordingProvider } from './Context/HomeWordingContext.tsx'
 
 createRoot(document.getElementById('root')).render(
 
@@ -15,11 +16,13 @@ createRoot(document.getElementById('root')).render(
       <HomeIconProvider>
         <RepresentationProvider>
           <CalendarsProvider>
-            <HashRouter>
-              <div className="font-baloo">
-                <App />
-              </div>
-            </HashRouter>
+            <HomeWordingProvider>
+              <HashRouter>
+                <div className="font-baloo">
+                  <App />
+                </div>
+              </HashRouter>
+            </HomeWordingProvider>
           </CalendarsProvider>
         </RepresentationProvider>
       </HomeIconProvider>

@@ -3,12 +3,14 @@ import Selector from '../Components/Selector.tsx'
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { useHomeIcon } from '../Context/HomeIconContext.tsx';
 import { useRepresentation } from '../Context/RepresentationContext.tsx';
+import { useHomeWording } from '../Context/HomeWordingContext.tsx';
 
 function AppSettings() {
 
     const { theme, setTheme } = useTheme();
     const { homeIcon, setHomeIcon } = useHomeIcon();
     const { representation, setRepresentation } = useRepresentation();
+    const { homeWording, setHomeWording } = useHomeWording()
 
     return (
         <Layout allowBack={true} allowNav={false}>
@@ -28,6 +30,11 @@ function AppSettings() {
                 <div className="flex-col">
                     <h1 className="flex text-left text-xl ml-5 "> Linear or Circular Menstruation Cycle? </h1>
                     <Selector options={["Linear", "Circular"]} def={representation} onChange={(newRepresentation) => setRepresentation(newRepresentation)} > </Selector>
+                </div>
+
+                <div className="flex-col">
+                    <h1 className="flex text-left text-xl ml-5 "> Simple or complex wording for homepage buttons? </h1>
+                    <Selector options={["Easy Read", "Complex"]} def={homeWording} onChange={(newHomeWording) => setHomeWording(newHomeWording)} > </Selector>
                 </div>
 
             </div>

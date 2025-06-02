@@ -16,6 +16,7 @@ import Settings from '../assets/v2/settings.png'
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
 import { useHomeIcon } from '../Context/HomeIconContext.tsx'
+import { useHomeWording } from '../Context/HomeWordingContext.tsx'
 
 function Menopause() {
 
@@ -23,6 +24,7 @@ function Menopause() {
     const { theme } = useTheme()
     const currentTheme = themes[theme]
     const { homeIcon } = useHomeIcon()
+    const { homeWording } = useHomeWording();
 
     return (
         <Layout allowBack={false} allowNav={true} current={'menopause'} title={""}>
@@ -44,7 +46,7 @@ function Menopause() {
                     }}
                     onClick={() => navigate('/physical')}>
                     {homeIcon === 'Yes' && (<img src={Physical} className='float-left w-[15%] h-auto ' />)}
-                    <p className='flex-1'> Physical Problems </p>
+                    <p className='flex-1'> {homeWording === 'Easy Read' ? 'Problems with your body' : 'Physical Symptoms'} </p>
                 </Button>
 
                 <Button
@@ -56,8 +58,7 @@ function Menopause() {
                         borderColor: currentTheme.border
                     }}>
                     {homeIcon === 'Yes' && (<img src={Emotional} className='float-left w-[15%] h-auto ' />)}
-
-                    <p className="flex-1"> Emotional Problems </p>
+                    <p className="flex-1"> {homeWording === 'Easy Read' ? 'Problems with how you feel' : 'Emotional Problems'} </p>
                 </Button>
 
                 <Button
@@ -82,7 +83,7 @@ function Menopause() {
                         borderColor: currentTheme.border
                     }}>
                     {homeIcon === 'Yes' && (<img src={Blood} className='float-left w-[15%] h-auto ' />)}
-                    <p className="flex-1"> Bleeding </p>
+                    <p className="flex-1"> {homeWording === 'Easy Read' ? 'Bleeding' : 'Menstrual Flow'} </p>
                 </Button>
 
                 <Button
@@ -94,7 +95,7 @@ function Menopause() {
                         borderColor: currentTheme.border
                     }}>
                     {homeIcon === 'Yes' && (<img src={Pain} className='float-left w-[15%] h-auto ' />)}
-                    <p className='flex-1'> Pain </p>
+                    <p className='flex-1'> {homeWording === 'Easy Read' ? 'Pain' : 'Menstrual Pain'} </p>
                 </Button>
 
             </div>
