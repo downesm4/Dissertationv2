@@ -53,7 +53,7 @@ function AppSettings() {
                     color: currentTheme.text,
                     borderColor: currentTheme.border
                 }}>
-                    <h1 className="flex text-center text-xl m-3 "> Do you want simple or complex wording for homepage buttons? </h1>
+                    <h1 className="flex text-center text-xl m-3 "> Do you want easy read or complex wording for homepage buttons? </h1>
                     <Selector className="-my-2 mx-4" options={["Easy Read", "Complex"]} def={homeWording} onChange={(newHomeWording) => setHomeWording(newHomeWording)} > </Selector>
                 </div>
 
