@@ -6,18 +6,22 @@ import Button from "../Components/Button";
 import { useTheme } from "../Context/ThemeContext";
 import { themes } from "../Styles/themes";
 
+// This page lists the resources for the learning area 
 function Resources() {
 
-    const [selected, setSelected] = useState();
+    const [selected, setSelected] = useState(); // for styling selected button 
 
+    // Constants for what has been passed in 
     const location = useLocation();
     const navigate = useNavigate()
     const resources = location.state?.resources;
     const title = location.state?.title
 
+    // Colour scheme settings
     const { theme } = useTheme()
     const currentTheme = themes[theme]
 
+    // Checks that resources and a title has been passed in and if not navigates to the menstrual hoe 
     useEffect(() => {
         if (!resources || !title) {
             navigate("/"); // or another fallback route
@@ -27,12 +31,14 @@ function Resources() {
     if (!resources) return null;
 
     return (
-        <Layout allowBack={true} allowNav={false} current={'learning'}>
+        <Layout allowBack={true} allowNav={false}>
 
-            <h1 className="text-center text-3xl mt-3 "> {title} </h1>
+            {/* Title depending on what has been passed in */}
+            <h1 className="text-center font-bold text-3xl mt-3 "> {title} </h1>
 
             <div className="flex-col mx-3 mt-10 space-y-10">
 
+                {/* maps all the resources related to the topic in individual buttons */}
                 {resources.map(({ id, question, Icon }) => (
                     <Button key={id} className="bg-orange-200 flex items-center justify-center"
                         style={{ background: currentTheme.Learning2 }}

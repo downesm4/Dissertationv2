@@ -1,6 +1,7 @@
 import Layout from '../Templates/MobileLayout.tsx'
 import '../App.css'
 
+// icons
 import Happy3 from '../assets/v2/Moods/happy3.png';
 import Sad3 from '../assets/v2/Moods/sad3.png';
 import Angry3 from '../assets/v2/Moods/angry3.png';
@@ -9,11 +10,14 @@ import Scared3 from '../assets/v2/Moods/scared3.png';
 import Lonely3 from '../assets/v2/Moods/lonely3.png';
 import Surprised3 from '../assets/v2/Moods/suprised3.png';
 
+// Settings 
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
 import { useHeadings } from '../Context/HeadingContext.tsx';
+import Button from '../Components/Button.tsx';
 
+// Default moods 
 const defaultMoods = [
     {
         id: 1, emotion: "Happy", question: ["How happy were you?", "Happy"], IC: Happy3
@@ -32,25 +36,32 @@ const defaultMoods = [
     }
 ];
 
-function Mood() {
-    const navigate = useNavigate();
+// this page is for selecting moods
 
+function Mood() {
+
+    // navigation and accessibility states
+    const navigate = useNavigate();
     const { theme } = useTheme();
     const currentTheme = themes[theme];
-
     const { headings } = useHeadings()
 
     return (
         <>
-            <Layout allowBack={true} allowNav={false} title={"Today's Mood"}>
+            {/* Layout used in each of the pages - 
+            allowBack decides if the back button should be rendered, allowNav decides if the navigation bar should render */}
+            <Layout allowBack={true} allowNav={false} >
 
                 <div className="flex-col space-y-8">
 
+                    {/* Heading for the mood page */}
                     <h1 className="text-xl font-bold text-center mb-10"> {headings === "Questions" ? "How are you feeling today?" : "Today's Feelings"} </h1>
 
                     <div className="mt-5 grid grid-cols-2 gap-y-6 gap-x-6 ">
+                        {/* Map the moods in divs and when clicked navigate the mood severity 
+                            Navigate - passes in the question and the id related to the mood */}
                         {defaultMoods.map(({ id, emotion, question, IC }) => (
-                            <div key={id}
+                            <Button key={id}
                                 onClick={() => navigate("/mseverity", { state: { q: { question }, id: { id } } })}
                                 className="col-span-1 flex flex-col items-center justify-center border rounded-lg"
                                 style={{
@@ -60,13 +71,10 @@ function Mood() {
                                 }}>
                                 <img src={IC} className='p-1 w-[50%] h-auto' />
                                 <p className="text-xl text-center font-bold "> {emotion} </p>
-                            </div>
+                            </Button>
                         ))}
-
                     </div>
-
                 </div>
-
             </Layout >
         </>
     )

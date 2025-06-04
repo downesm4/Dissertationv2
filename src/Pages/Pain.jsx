@@ -7,6 +7,7 @@ import '../App.css'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+// images 
 import Pain1 from '../assets/v2/Pain/Pain1.svg'
 import Pain2 from '../assets/v2/Pain/Pain2.svg'
 import Pain3 from '../assets/v2/Pain/Pain3.svg'
@@ -18,33 +19,38 @@ import None from '../assets/v2/none.svg'
 import Settings from '../assets/v2/settings.png'
 import close from '../assets/v2/close.png'
 
+// settings for accessibility first 
 import { useTheme } from '../Context/ThemeContext.tsx'
 import { themes } from '../Styles/themes.js'
 import { useHeadings } from '../Context/HeadingContext.tsx'
 import { usePainEmoji } from '../Context/PainEmojisContext.tsx'
 import { usePainWording } from '../Context/PainWordingContext.tsx'
 
+// this page is for ranking severity of pain
 function Pain() {
 
-    const [selected, setSelected] = useState();
-    const [showSettings, setShowSettings] = useState(false);
+    const [selected, setSelected] = useState(); // for styling the selected button 
+    const [showSettings, setShowSettings] = useState(false); // for rendering whether setting pop up is visible or not
+
+    // Accessibility first setting state 
     const { theme } = useTheme();
     const currentTheme = themes[theme];
     const { painEmoji, setPainEmoji } = usePainEmoji();
     const { painWording, setPainWording } = usePainWording();
-
     const { headings } = useHeadings();
 
     return (
         <>
-            <Layout allowBack={true} allowNav={false} title={"Today's Pain"}>
+            <Layout allowBack={true} allowNav={false} >
 
+                {/* Button for settings pop up */}
                 <div className="absolute top-13 right-13 z-50">
                     <button onClick={() => setShowSettings(true)}>
                         <img src={Settings} className="w-8 h-8" />
                     </button>
                 </div>
 
+                {/* Settings Pop Up */}
                 {showSettings && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
                         <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
@@ -75,9 +81,12 @@ function Pain() {
 
                 <div className="flex-col space-y-10">
 
+                    {/* Heading depending on settings */}
                     <h1 className="text-2xl text-center font-bold mb-10 mt-5"> {headings === "Questions" ? "How was the pain today?" : "Today's Pain"} </h1>
 
+
                     <div className="flex-col mx-3 mt-5 space-y-7">
+                        {/* None pain option button with wording and emojis depending on settings */}
                         <Button className={twMerge("flex w-full items-center p-2 border  shadow-xl", selected === "none" ? 'outline-[0.5vw]' : '')}
                             style={{
                                 background: currentTheme.PainNone,
@@ -95,6 +104,7 @@ function Pain() {
                             <h1 className="flex-1 text-xl text-center font-bold "> None </h1>
                         </Button>
 
+                        {/* Low Settings */}
                         <Button className={twMerge("flex w-full items-center p-2  border shadow-xl", selected === "light" ? ' outline-[0.5vw]' : '')}
                             style={{
                                 background: currentTheme.Pain1,
@@ -110,6 +120,7 @@ function Pain() {
                             <h1 className="flex-1 text-xl text-center font-bold "> {painWording === 'Descriptive' ? "It was okay" : "Low"}</h1>
                         </Button>
 
+                        {/* Medium settings */}
                         <Button className={twMerge("flex w-full items-center p-2  border shadow-xl", selected === "medium" ? ' outline-[0.5vw]' : '')}
                             style={{
                                 background: currentTheme.Pain2,
@@ -126,6 +137,7 @@ function Pain() {
                             <h1 className="flex-1 text-xl text-center font-bold "> {painWording === 'Descriptive' ? "Got through the day with medication" : "Medium"} </h1>
                         </Button>
 
+                        {/* High settings */}
                         <Button className={twMerge("flex w-full items-center p-2 border shadow-xl", selected === "heavy" ? ' outline-[0.5vw]' : '')}
                             style={{
                                 background: currentTheme.Pain3,
@@ -143,6 +155,7 @@ function Pain() {
                         </Button>
                     </div>
 
+                    {/* Text input and confirm button */}
                     <div className="flex-col space-y-5 mb-10">
                         <TextInput rowNo={4} />
                         <ConfirmButton style={{
@@ -153,9 +166,7 @@ function Pain() {
                             outlineColor: currentTheme.border
                         }} />
                     </div>
-
                 </div>
-
             </Layout >
         </>
     )

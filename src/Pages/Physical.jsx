@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import Layout from '../Templates/MobileLayout.tsx'
 import Button from '../Components/Button.tsx'
 import AdditionalPopUp from '../Components/AdditionalPopUp.tsx';
@@ -8,6 +7,7 @@ import '../App.css'
 
 import { useNavigate } from 'react-router-dom';
 
+// Icons 
 import Headache from '../assets/v2/Symptoms/headache.svg'
 import Tinnitus from '../assets/v2/Symptoms/tinnitus.svg'
 import Joint from '../assets/v2/Symptoms/joint.svg'
@@ -22,6 +22,13 @@ import Default from '../assets/default.png'
 import Settings from '../assets/v2/settings.png'
 import close from '../assets/v2/close.png'
 
+// Accessibility First Setting States
+import { useTheme } from '../Context/ThemeContext.tsx';
+import { themes } from '../Styles/themes.js';
+import { useHeadings } from '../Context/HeadingContext.tsx';
+import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
+
+// Default Physical Symptoms 
 const PhysicalSymptoms = [
     {
         id: 1, symptom: ["I feel tired", "Fatigue"], Icon: Fatigue, question: ["How tired were you?", "Fatigue"]
@@ -44,30 +51,30 @@ const PhysicalSymptoms = [
     }
 ];
 
-import { useTheme } from '../Context/ThemeContext.tsx';
-import { themes } from '../Styles/themes.js';
-import { useHeadings } from '../Context/HeadingContext.tsx';
-import { useSymptomWording } from '../Context/SymptomsWordingContext.tsx';
-
+// this page lists all of the physical menopause symptoms
 function Physical() {
 
+    // Get the physical symptoms based on what is stored in local storage or default symptoms
     const [physicalSymptoms, setPhysical] = useState(() => {
         const saved = localStorage.getItem("physicalSymptoms");
         return saved ? JSON.parse(saved) : PhysicalSymptoms
     });
-    const [showPopup, setShowPopup] = useState(false);
-    const [showSettings, setShowSettings] = useState(false);
-    const [input, setInput] = useState("");
-    const [input2, setInput2] = useState("");
-    const navigate = useNavigate();
 
+    const [showPopup, setShowPopup] = useState(false); // For additional symptom pop up 
+    const [showSettings, setShowSettings] = useState(false); // For setting pop up 
+
+    const [input, setInput] = useState(""); // Input for name of additional symptoms
+    const [input2, setInput2] = useState(""); // Input for question of additional symptoms
+
+    // Navigation and accessibility first settings
+    const navigate = useNavigate();
     const { theme } = useTheme();
     const currentTheme = themes[theme];
-
     const { headings } = useHeadings();
     const { symptomWording, setSymptomWording } = useSymptomWording();
 
 
+    // When new symptom is saved, create a new symptom and add it to the list of symptoms 
     const handlePopUp = (title, question) => {
         const newSymptom = {
             id: physicalSymptoms.length + 1,
@@ -79,6 +86,7 @@ function Physical() {
         setPhysical([...physicalSymptoms, newSymptom])
     }
 
+    // When a new symptom is added updated to local storage 
     useEffect(() => {
         localStorage.setItem("physicalSymptoms", JSON.stringify(physicalSymptoms))
 
@@ -88,12 +96,14 @@ function Physical() {
         <>
             <Layout allowBack={true} allowNav={false} >
 
+                {/* Settings button */}
                 <div className="absolute top-13 right-13 z-50">
                     <button onClick={() => setShowSettings(true)}>
                         <img src={Settings} className="w-8 h-8" />
                     </button>
                 </div>
 
+                {/* Pop up for settings for wording */}
                 {showSettings && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
                         <div className="rounded-lg border-[0.5vw] shadow-lg w-11/12 max-w-md p-3"
@@ -122,6 +132,7 @@ function Physical() {
 
                     <div>
                         <div className="flex flex-col overflow-y-auto gap-y-5 mt-5">
+                            {/* put buttons for each of the symptoms on the screen and navigate to severity with the question and symptom type */}
                             {physicalSymptoms.map(({ id, symptom, Icon, question }) => (
                                 <Button key={id}
                                     style={{
@@ -138,6 +149,7 @@ function Physical() {
                                 </Button>
                             ))}
 
+                            {/* Button for the additional symptom  pop up */}
                             <Button
                                 style={{
                                     background: currentTheme.Symptom1,
@@ -152,6 +164,7 @@ function Physical() {
 
                         </div>
 
+                        {/* Show the pop up when required */}
                         {showPopup && (<AdditionalPopUp
                             input={input}
                             setInput={setInput}
@@ -161,11 +174,7 @@ function Physical() {
                             onConfirm={() => { handlePopUp(input, input2); setShowPopup(false); setInput("") }} />
                         )}
                     </div>
-
-
-
                 </div>
-
             </Layout >
         </>
     )

@@ -1,10 +1,10 @@
 import Layout from '../Templates/MobileLayout.tsx'
 import '../App.css'
 import Calendar from '../Components/Calendar.tsx'
-import DropDown from '../Components/DropDown.tsx'
 import { useState } from "react";
 import Selector from '../Components/Selector.tsx'
 
+//images 
 import blood1 from '../assets/v2/Bleeding/blood1.svg'
 import blood2 from '../assets/v2/Bleeding/blood2.svg'
 import blood3 from '../assets/v2/Bleeding/blood3.svg'
@@ -20,19 +20,23 @@ import back from '../assets/v2/Symptoms/backPain.svg'
 import acne from '../assets/v2/Symptoms/acne.svg'
 import close from '../assets/v2/close.png'
 import Settings from '../assets/v2/settings.png'
+
+// settings for accessibility first 
 import { useTheme } from '../Context/ThemeContext.tsx';
 import { themes } from '../Styles/themes.js';
 import { useCalendars } from '../Context/CalendarContext.tsx';
 
-
+// This allows for user to view average logs and previous logs
 function History() {
 
+    // Options for what could be shown for flow, pain and symptoms 
     const bleeding = ["Stopped me from doing things", "Couldn't do everything today", 'It was okay']
     const bloodIcon = [blood3, blood2, blood1]
     const pain = ['Stopped me from doing things', 'Got through the day with medications', 'It was okay']
     const painIcon = [pain3, pain2, pain1]
     const symptoms = [['Headache', 'Cramps', 'Sweet Cravings'], ['Fatigue', 'Joint Pain', 'Back Pain'], ['Acne', 'Cramps', 'Headache']]
     const symptomIcons = [[headache, cramps, sweets], [fatigue, joint, back], [acne, cramps, headache]]
+
 
     const [selected, setSelected] = useState(1)
     const [selectedArray, setSelectedArray] = useState(['Headache', 'Cramps', 'Sweet Cravings'])
@@ -43,6 +47,7 @@ function History() {
     const [showSettings, setShowSettings] = useState(false);
     const { calendars, setCalendars } = useCalendars();
 
+    // Generates a random number for what option to show in the page 
     const handleDropDownClick = () => {
         const randomIndex = Math.floor(Math.random() * 3);
 
@@ -52,14 +57,16 @@ function History() {
     };
 
     return (
-        <Layout allowBack={false} allowNav={true} current={'history'} title={""}>
+        <Layout allowBack={false} allowNav={true} current={'history'} >
 
+            {/* Button for the settings 8*/}
             <div className="absolute top-13 right-13 z-50">
                 <button onClick={() => setShowSettings(true)}>
                     <img src={Settings} className="w-8 h-8" />
                 </button>
             </div>
 
+            {/* If show settings is true show the settings pop up with the option to choose to render calendars or not */}
             {showSettings && (
 
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style={{ pointerEvents: "auto" }}>
@@ -81,15 +88,17 @@ function History() {
                 </div>
             )}
 
+            {/* Selector for displaying day, month or week averages*/}
             <div className='mx-10'>
                 <Selector options={["Day", 'Week', 'Month']} def="Day" onChange={handleDropDownClick} />
             </div>
 
+            {/* If the user wants calendars render them */}
             {calendars === 'Yes' && (<Calendar />)}
 
             <div className="flex-col flex space-y-3 mt-5">
 
-                <div >
+                <div > {/* Show the bleeding average with text and icons*/}
                     <div className="text-2xl font-bold">
                         <h1 className="text-xl font-bold" style={{ color: currentTheme.text }}> Bleeding </h1>
                     </div>
@@ -104,7 +113,7 @@ function History() {
                     </div>
                 </div>
 
-                <div>
+                <div> {/* Show the pain average with text and icons*/}
                     <div className="text-2xl font-bold">
                         <h1 className="text-xl font-bold" style={{ color: currentTheme.text }}> Pain </h1>
                     </div>
@@ -119,7 +128,7 @@ function History() {
                     </div>
                 </div>
 
-                <div className="mb-10">
+                <div className="mb-10"> {/* Show the common symptoms with text and icons*/}
                     <h1 className='text-xl'
                         style={{
                             color: currentTheme.text
