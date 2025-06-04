@@ -17,6 +17,8 @@ import { SymptomWordingProvider } from './Context/SymptomsWordingContext.tsx'
 
 createRoot(document.getElementById('root')).render(
 
+  // Main entry point for the app which deals with the Providers for each of the accessibility first settings
+
   <StrictMode>
     <ThemeProvider>
       <HomeIconProvider>
