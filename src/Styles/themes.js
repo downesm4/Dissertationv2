@@ -1,3 +1,5 @@
+// Colour Schemes for the two options
+
 export const themes = {
     Muted: {
         name: 'Muted',

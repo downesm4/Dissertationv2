@@ -1,7 +1,6 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 
-
 import Menstruation from './Pages/Menstrual.jsx'
 import AppSettings from './Pages/AppSettings.jsx'
 import Flow from './Pages/Flow.jsx'
@@ -18,6 +17,8 @@ import Resources from './Pages/Resources.jsx'
 import History from './Pages/History.jsx'
 
 function App() {
+
+  // Deals with all the routing for navigation in the app
 
   return (
     <Routes>
