@@ -108,7 +108,7 @@ function Symptoms() {
         <Layout allowBack={true} allowNav={false} >
 
             {/* settings button  */}
-            <div className="absolute top-13 right-13 z-50">
+            <div className="flex float-right">
                 <button onClick={() => setShowSettings(true)}>
                     <img src={Settings} className="w-8 h-8" />
                 </button>
