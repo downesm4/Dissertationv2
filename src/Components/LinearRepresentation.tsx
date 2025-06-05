@@ -4,8 +4,6 @@ import { themes } from "../Styles/themes";
 
 import Blood from '../assets/v2/Bleeding/blood2.svg';
 import Check from '../assets/v2/check.png'
-import { twMerge } from "tailwind-merge";
-
 
 // LD friendly representation of the menstrual cycle
 // Displays the cycle as a line showing different days 
@@ -36,8 +34,8 @@ function LinearRepresentation() {
         if (currentDayRef.current) {
             currentDayRef.current.scrollIntoView({
                 behavior: "smooth",
-                block: "center",
-                inline: "center",
+                block: "nearest",
+                inline: "nearest",
             });
         }
     }, [currentDay]);
@@ -51,17 +49,19 @@ function LinearRepresentation() {
                 borderColor: currentTheme.border
             }}>
 
-            <h1 className="text-xl font-bold text-center"> Your Period Cycle: </h1>
+            <h1 className="text-xl font-bold text-center mt-3"> Your Period Cycle: </h1>
 
-            <div ref={containerRef} style={{
-                WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS/Android
-                touchAction: "pan-x", // Ensures horizontal scrolling works
-            }} className="flex overflow-x-auto justify-center items-center my-4 mx-5 p-3 rounded-md border border-black px-10">
+            <div
+                ref={containerRef}
+                className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory whitespace-nowrap justify-start items-center my-4 mx-5 p-3 rounded-md border border-black"
+            >
                 {Array.from({ length: totalDays }, (no, index) => index + 1).map((no, index) => (
                     <div
                         key={index}
-                        ref={no === currentDay ? currentDayRef : null}
-                        className={`flex w-8 h-8 items-center justify-center md:mx-[3%] text-basefont-bold rounded-full px-5 py-5 
+                        ref={el => {
+                            if (no === currentDay) currentDayRef.current = el;
+                        }}
+                        className={`min-w-[32px] h-8 snap-center flex items-center justify-center text-base font-bold rounded-full mx-1 px-5 py-5 
                              ${bleedingDays.includes(no) ? "bg-rose-200 mx-1" : ""}
                              ${no < currentDay && bleedingDays.includes(no) ? ' bg-rose-400 mx-1' : ""} 
                              ${fertileDays.includes(no) ? "bg-blue-200 mx-1" : ""}
@@ -84,9 +84,9 @@ function LinearRepresentation() {
                 <h1 className="font-bold text-center text-2xl"> Did you bleed today?</h1>
                 <div className="flex items-center justify-center mx-auto">
                     <button key="Yes"
-                        className="flex flex-col w-[35%] border items-center rounded-lg"
+                        className="flex flex-col w-[35%] border items-center rounded-lg shadow-lg"
                         style={{
-                            background: selected === "Yes" ? currentTheme.LinearPress : currentTheme.Bleeding1,
+                            background: selected === "Yes" ? currentTheme.LinearPress : currentTheme.LinearUnPress,
                             borderColor: currentTheme.border,
                             color: currentTheme.text
                         }}

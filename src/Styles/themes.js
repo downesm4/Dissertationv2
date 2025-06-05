@@ -36,6 +36,7 @@ export const themes = {
         PopUpButtons: '#fee2e2',
         ConfirmButton: '#f472b6',
         ConfirmBorder: '#be123c',
+        LinearUnPress: '#fda4af',
         LinearPress: '#fb7185'
     }, Colourful: {
         name: "Colourful",
@@ -72,6 +73,7 @@ export const themes = {
         PopUpButtons: '#bae6fd',
         ConfirmButton: '#f9a8d4',
         ConfirmBorder: '#be123c',
+        LinearUnPress: '#fda4af',
         LinearPress: '#fb7185'
     }
 }
