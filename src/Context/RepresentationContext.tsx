@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Representation = "Linear" | "Circular"
+// HANDLES THE TYPE OF MENSTRUAL REPRESENTATION ON THE MENSTRUAL HOME PAGE
+// For details on code, please see ThemeContext.tsx
+type Representation = "Linear" | "Circular" // Specifies the options
 
 interface RepresentationContextType {
     representation: Representation,
@@ -10,7 +12,7 @@ interface RepresentationContextType {
 const RepresentationContext = createContext<RepresentationContextType | undefined>(undefined)
 
 export const RepresentationProvider = ({ children }: { children: React.ReactNode }) => {
-    const [representation, setRepresentationState] = useState<Representation>('Linear');
+    const [representation, setRepresentationState] = useState<Representation>('Linear'); // Default should be linear representations - default is always the LD accessible option
 
     const setRepresentation = (newRepresentation: Representation) => {
         setRepresentationState(newRepresentation);

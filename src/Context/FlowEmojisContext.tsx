@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type FlowEmoji = 'Yes' | 'No';
+// HANDLES WHETHER THE USER WANTS EMOJI ICONS ON THE FLOW PAGE
+// For details on code, please see ThemeContext.tsx
+
+type FlowEmoji = 'Yes' | 'No';  // Specifies the options
 
 interface FlowEmojiContextType {
     flowEmoji: FlowEmoji,
@@ -10,7 +13,7 @@ interface FlowEmojiContextType {
 const FlowEmojiContext = createContext<FlowEmojiContextType | undefined>(undefined)
 
 export const FlowEmojiProvider = ({ children }: { children: React.ReactNode }) => {
-    const [flowEmoji, setFlowEmojiState] = useState<FlowEmoji>('Yes');
+    const [flowEmoji, setFlowEmojiState] = useState<FlowEmoji>('Yes'); // Default should be yes to emoji icons - default is always the LD accessible option
 
     const setFlowEmoji = (newFlowEmoji: FlowEmoji) => {
         setFlowEmojiState(newFlowEmoji);

@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Headings = 'Questions' | 'Statements';
+// HANDLES THE TYPE OF HEADINGS THE USER WANTS FOR THE WHOLE APP 
+// For details on code, please see ThemeContext.tsx
+
+type Headings = 'Questions' | 'Statements';  // Specifies the options
 
 interface HeadingsContextType {
     headings: Headings,
@@ -10,7 +13,7 @@ interface HeadingsContextType {
 const HeadingsContext = createContext<HeadingsContextType | undefined>(undefined)
 
 export const HeadingsProvider = ({ children }: { children: React.ReactNode }) => {
-    const [headings, setHeadingsState] = useState<Headings>('Questions');
+    const [headings, setHeadingsState] = useState<Headings>('Questions'); // Default should be questions - default is always the LD accessible option
 
     const setHeadings = (newHeadings: Headings) => {
         setHeadingsState(newHeadings);

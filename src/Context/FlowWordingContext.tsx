@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type FlowWording = 'Descriptive' | 'Abstract';
+// HANDLES THE TYPE OF WORDING THE USER WANTS ON THE FLOW PAGE
+// For details on code, please see ThemeContext.tsx
+
+type FlowWording = 'Descriptive' | 'Abstract';  // Specifies the options
 
 interface FlowWordingContextType {
     flowWording: FlowWording,
@@ -10,7 +13,7 @@ interface FlowWordingContextType {
 const FlowWordingContext = createContext<FlowWordingContextType | undefined>(undefined)
 
 export const FlowWordingProvider = ({ children }: { children: React.ReactNode }) => {
-    const [flowWording, setFlowWordingState] = useState<FlowWording>('Descriptive');
+    const [flowWording, setFlowWordingState] = useState<FlowWording>('Descriptive'); // Default should be descriptive wording - default is always the LD accessible option
 
     const setFlowWording = (newFlowWording: FlowWording) => {
         setFlowWordingState(newFlowWording);

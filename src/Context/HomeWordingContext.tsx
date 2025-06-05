@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type HomeWording = 'Easy Read' | 'Complex';
+// HANDLES THE TYPE OF WORDING FOR THE BUTTONS ON THE HOMEPAGES
+// For details on code, please see ThemeContext.tsx
+
+type HomeWording = 'Easy Read' | 'Complex';  // Specifies the options
 
 interface HomeWordingContextType {
     homeWording: HomeWording,
@@ -10,7 +13,7 @@ interface HomeWordingContextType {
 const HomeWordingContext = createContext<HomeWordingContextType | undefined>(undefined)
 
 export const HomeWordingProvider = ({ children }: { children: React.ReactNode }) => {
-    const [homeWording, setHomeWordingState] = useState<HomeWording>('Easy Read');
+    const [homeWording, setHomeWordingState] = useState<HomeWording>('Easy Read'); // Default should be easy read - default is always the LD accessible option
 
     const setHomeWording = (newHomeWording: HomeWording) => {
         setHomeWordingState(newHomeWording);

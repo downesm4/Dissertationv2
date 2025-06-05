@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Calendars = 'Yes' | 'No';
+// HANDLES WHETHER THE USER WANT CALENDARS ON THE HISTORY PAGES 
+// For details on code, please see ThemeContext.tsx
+
+type Calendars = 'Yes' | 'No';  // Specifies the options
 
 interface CalendarsContextType {
     calendars: Calendars,
@@ -10,7 +13,7 @@ interface CalendarsContextType {
 const calendarsContext = createContext<CalendarsContextType | undefined>(undefined)
 
 export const CalendarsProvider = ({ children }: { children: React.ReactNode }) => {
-    const [calendars, setCalendarsState] = useState<Calendars>('No');
+    const [calendars, setCalendarsState] = useState<Calendars>('No'); // Default should be no calendars - default is always the LD accessible option
 
     const setCalendars = (newCalendars: Calendars) => {
         setCalendarsState(newCalendars);

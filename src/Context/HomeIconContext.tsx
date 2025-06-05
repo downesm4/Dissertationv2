@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type HomeIcon = 'Yes' | 'No';
+// HANDLES WHETHER THE USER WANTS ICONS ON THE BUTTONS ON THE HOME SCREENS
+// For details on code, please see ThemeContext.tsx
+
+type HomeIcon = 'Yes' | 'No';  // Specifies the options
 
 interface HomeIconContextType {
     homeIcon: HomeIcon,
@@ -10,7 +13,7 @@ interface HomeIconContextType {
 const HomeIconContext = createContext<HomeIconContextType | undefined>(undefined)
 
 export const HomeIconProvider = ({ children }: { children: React.ReactNode }) => {
-    const [homeIcon, setHomeIconState] = useState<HomeIcon>('Yes');
+    const [homeIcon, setHomeIconState] = useState<HomeIcon>('Yes'); // Default should be yes to home icons - default is always the LD accessible option
 
     const setHomeIcon = (newHomeIcon: HomeIcon) => {
         setHomeIconState(newHomeIcon);

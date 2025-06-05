@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type PainWording = 'Descriptive' | 'Abstract';
+// HANDLES THE TYPE OF WORDING THE USER WANTS ON THE PAIN PAGE
+// For details on code, please see ThemeContext.tsx
+
+type PainWording = 'Descriptive' | 'Abstract';  // Specifies the options
 
 interface PainWordingContextType {
     painWording: PainWording,
@@ -10,7 +13,7 @@ interface PainWordingContextType {
 const PainWordingContext = createContext<PainWordingContextType | undefined>(undefined)
 
 export const PainWordingProvider = ({ children }: { children: React.ReactNode }) => {
-    const [painWording, setPainWordingState] = useState<PainWording>('Descriptive');
+    const [painWording, setPainWordingState] = useState<PainWording>('Descriptive'); // Default should be descriptive wording - default is always the LD accessible option
 
     const setPainWording = (newPainWording: PainWording) => {
         setPainWordingState(newPainWording);
