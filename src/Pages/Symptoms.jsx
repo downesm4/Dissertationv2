@@ -20,8 +20,8 @@ import Diarrhea from "../assets/v2/Symptoms/diarrhea.svg";
 import Constipation from "../assets/v2/Symptoms/constipation.svg";
 import Nausea from "../assets/v2/Symptoms/nausea.svg";
 import Vomit from "../assets/v2/Symptoms/vomit.svg";
-import Plus from '../assets/plus.png';
-import Default from '../assets/default.png'
+import Plus from '../assets/v2/plus.png';
+import Default from '../assets/v2/default.png'
 import Settings from '../assets/v2/settings.png'
 import close from '../assets/v2/close.png'
 

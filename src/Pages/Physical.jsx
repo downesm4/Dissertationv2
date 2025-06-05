@@ -17,8 +17,8 @@ import Fatigue from '../assets/v2/Symptoms/tired.svg'
 import NightSweats from '../assets/v2/Symptoms/nightSweats.svg'
 import Sleep from '../assets/v2/Symptoms/noSleep.svg'
 import Vagina from '../assets/v2/Symptoms/privateParts.svg'
-import Plus from '../assets/plus.png';
-import Default from '../assets/default.png'
+import Plus from '../assets/v2/plus.png';
+import Default from '../assets/v2/default.png'
 import Settings from '../assets/v2/settings.png'
 import close from '../assets/v2/close.png'
 

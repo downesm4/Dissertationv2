@@ -19,10 +19,10 @@ import Anxiety from '../assets/v2/Symptoms/anxiety.svg'
 import LowMoods from '../assets/v2/Symptoms/depression.svg'
 import Abstinence from '../assets/v2/Symptoms/noSex.svg'
 import Confusion from '../assets/v2/Symptoms/confused.svg'
-import Default from '../assets/default.png'
+import Default from '../assets/v2/default.png'
 import Settings from '../assets/v2/settings.png'
 import close from '../assets/v2/close.png'
-import Plus from '../assets/plus.png';
+import Plus from '../assets/v2/plus.png';
 
 
 // Default symptoms 
