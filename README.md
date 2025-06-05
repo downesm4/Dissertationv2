@@ -1,9 +1,20 @@
-Using the repo on your own computer:
-- You will need xCode and Android Studio, both with simulators set up
-1. Clone the repository to your own device `https://github.com/downesm4/Dissertation`
-2. You can run the server for the web using `npm run dev`
-3. You can run the application on an ios simulator using `npm run ios`
-4. You can run the application on an android simulator using `npm run android`
+To use the repo on your own computer:
+
+You will need Node.js and npm as well as XCode and Android Studio both with simulators set up. 
+
+1.	Clone the repository –
+  `git clone https://github.com/downesm4/Dissertationv2`
+2.	Navigate into the project folder 
+3.	Install project dependencies
+  `npm install`
+4. Add Capacitor for iOS
+   `npx cap add ios`
+5.	Run the ios simulator 
+  `npm run ios` – then select a device and the simulator will open 
+6.	Run the android simulator 
+  `npm run android` – then select a device and the simulator will open 
+
+---
 
 Conventional Commits
 - feat - Commits that add or remove a UI component/page
